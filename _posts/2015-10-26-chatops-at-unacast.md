@@ -19,13 +19,13 @@ So, what is ChatOps? For us it means that all the scripts and buttons you usuall
 
 
 ### Why are we doing ChatOps, and why should you?
-You all know the case when something critical breaks. The “go-to” guy fires up the SSH-console and enters a selection of different commands to fix the issue. Unless you actually go and SSH into the box and hit the arrow keys to replay the sequence of commands, this critical knowledge will be lost until next time the excrements hits the air-moving device. Which in this case, probably will be the next time the application is deployed. 
+You all know the case when something critical breaks. The “go-to” guy fires up the SSH-console and enters a selection of different commands to fix the issue. Unless you actually go and SSH into the box and hit the arrow keys to replay the sequence of commands, this critical knowledge will be lost until next time the excrements hit the air-moving device. Which in this case, probably will be the next time the application is deployed. 
 
 If we were to place ourself in this situation it would be a huge liability for us as a young tech company. We just cannot afford that knowledge about our systems only resides in one developers brain. 
 
 This is why ChatOps is huge for us. By showing everyone else what you are doing, through the chat, you are at the same time spreading the knowledge on how to deploy and run the different applications. 
 
-This is expecially important for us, who are now hiring our next 10 developers. This means that they from the day they log in to our Slack, will see what everyone else is doing, and most importantly: How they are doing it. 
+This is especially important to us, who are now hiring our next 10 developers. This means that they from the day they log in to our Slack will see what everyone else is doing, and most importantly: How they are doing it. 
 
 ![heim deploys](/public/images/heim_deploys.png)
 
