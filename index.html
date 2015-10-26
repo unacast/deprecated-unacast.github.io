@@ -7,12 +7,15 @@ title: Home
   {% for post in paginator.posts %}
   <div class="post">
     <h1 class="post-title">
-      <a href="{{ site.baseurl }}/{{ post.url }}">
+      <a href="{{ site.baseurl }}{{ post.url }}">
         {{ post.title }}
       </a>
     </h1>
 
-    <span class="post-date">{{ post.date | date_to_string }}</span>
+  <span class="post-date">{{ post.date | date_to_string }} by 
+    <img alt="@{{post.ghname}}" class="author-avatar" src="https://avatars0.githubusercontent.com/u/{{post.ghavatar}}?v=3&amp;s=36" /> 
+    <a href="https://github.com/{{post.ghname}}">{{post.ghname}}</a>, {{post.jobtitle}}
+  </span>
 
     {{ post.content }}
   </div>

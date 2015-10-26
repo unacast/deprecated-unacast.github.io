@@ -4,7 +4,10 @@ layout: default
 
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
-  <span class="post-date">{{ page.date | date_to_string }}</span>
+  <span class="post-date">{{ page.date | date_to_string }} by 
+    <img alt="@{{page.ghname}}" class="author-avatar" src="https://avatars0.githubusercontent.com/u/{{page.ghavatar}}?v=3&amp;s=36" /> 
+    <a href="https://github.com/{{page.ghname}}">{{page.ghname}}</a>, {{page.jobtitle}}
+  </span>
   {{ content }}
 </div>
 
