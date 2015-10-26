@@ -29,7 +29,7 @@ This is especially important to us, who are now hiring our next 10 developers. T
 
 ![heim deploys](/public/images/heim_deploys.png)
 
-From deploying an app to production, to routing splitting traffic amongst versions and to cancel processing jobs, everything is documented in real-time as it happens.
+From deploying an app to production, to splitting traffic between versions and to cancel processing jobs, everything is documented in real-time as it happens.
 
 ### Our development process
 
