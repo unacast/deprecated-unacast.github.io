@@ -13,7 +13,7 @@ jobtitle: Lead Platform Engineer
 ### ChatOps?!?
 ChatOps is a term often credited to <a href="https://www.youtube.com/watch?v=NST3u-GjjFw">GitHub</a>, and it is all about putting the tools in the middle of the conversations. At Unacast most of our conversations go through Slack, and when we integrated ChatOps into our workflow we got the tools closer to the conversation.
 
-So, what is ChatOps? For us it means that all the scripts and buttons you usually execute or press to deploy, direct load to new instances, is being triggered from Slack. It also democratizes the deployment process for us, so the Product Owners can do the actual deployment to production.
+So, what is ChatOps? For us it is the the action of triggering stuff from Slack instead of pressing buttons on a dashboard or runing shell scripts from the command-line. It is your monitoring tool posting alerts to chat instead of sending you an email. It is about deployment, monitoring and operation in the context of a conversation. It also democratises the deployment process, so the Product Owners can do the actual deployment to production.
 
 ![Kjartan deploys](/public/images/kjartan_deploys.png) 
 
@@ -25,7 +25,7 @@ If we were to place ourself in this situation it would be a huge liability for u
 
 This is why ChatOps is huge for us. By showing everyone else what you are doing, through the chat, you are at the same time spreading the knowledge on how to deploy and run the different applications. 
 
-This is expecially important for us, who are now hiring our next 10 developers. This means that they from the day they log in to our Slack, will see what everyone else is doing, and most importantly: How they are doing it. 
+This is expecially important for us, who are now hiring our next 10 developers. This means that from the day they log in to our Slack will see what everyone else is doing, and most importantly: How they are doing it. 
 
 ![heim deploys](/public/images/heim_deploys.png)
 
@@ -45,13 +45,13 @@ This is how it works:
 * Heaven triggers a parameterized build on CircleCI
 * CircleCI handles the actual deployment
 
-This setup is very flexible and we can use it to deploy any type of application on any cloud provider. It also enables us to limit deployment to our system from individual accounts to prevent someone from deploying something by mistake.
+This setup is very powerful and we can use it to deploy any type of application on any cloud provider. It also enables us to limit deployment to our system from individual accounts to prevent someone from deploying something by mistake.
 
 ### How do I start?
 
-It might be daunting to try to chew over too much at once, so our general advice is to start small and build from there. The thing that brought us immediate value was bringing in deployments and health checks, and we are currently working on bringing creation of ephemeral environments into our flow. 
+It may be daunting to try to chew over too much at once, so our general advice is to start small and build from there. The thing that brought us immediate value was bringing in deployments and health checks, and we are currently working on bringing creation of ephemeral environments into our flow. 
 
-There is literaly hundreds of plugins to Hubot, so you should be able to find something that will suit your needs. If not, it offers flexible scripting through CoffeScript so to integrate with an existing API you only need some time and elbow grease.
+There is literally hundreds of plugins to Hubot, so you should be able to find something that will suit your needs. If not, it offers flexible scripting through CoffeScript so to integrate with an existing API you only need some time and elbow grease.
 
 
 
