@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Chatops @ Unacast"
+title: "ChatOps @ Unacast"
 ghavatar: 53291
 ghname: heim
 jobtitle: Lead Platform Engineer
@@ -9,6 +9,8 @@ jobtitle: Lead Platform Engineer
 <div class="message">
   The Unacast tech team has invested heavily in ChatOps, this post gives an overview over our deployment system and the advantages it gives us both in a short, and longer term.
 </div>
+
+![Hubot](/public/images/hubot.jpg)
 
 ### ChatOps?!?
 ChatOps is a term often credited to <a href="https://www.youtube.com/watch?v=NST3u-GjjFw">GitHub</a>, and it is all about putting the tools in the middle of the conversations. At Unacast most of our conversations go through Slack, and when we integrated ChatOps into our workflow we got the tools closer to the conversation.
@@ -21,11 +23,11 @@ So, what is ChatOps? For us it is the the action of triggering stuff from Slack 
 ### Why are we doing ChatOps, and why should you?
 You all know the case when something critical breaks. The “go-to” guy fires up the SSH-console and enters a selection of different commands to fix the issue. Unless you actually go and SSH into the box and hit the arrow keys to replay the sequence of commands, this critical knowledge will be lost until next time the excrements hit the air-moving device. Which in this case, probably will be the next time the application is deployed. 
 
-If we were to place ourself in this situation it would be a huge liability for us as a young tech company. We just cannot afford that knowledge about our systems only resides in one developers brain. 
+If we were to place ourself in this situation it would be a huge liability for us as a young tech company. We just cannot afford that the knowledge about our systems resides in the brain of only one developer. 
 
 This is why ChatOps is huge for us. By showing everyone else what you are doing, through the chat, you are at the same time spreading the knowledge on how to deploy and run the different applications. 
 
-This is especially important to us, who are now hiring our next 10 developers. This means that they from the day they log in to our Slack will see what everyone else is doing, and most importantly: How they are doing it. 
+This is especially important to us, who are now hiring our next 10 developers. This means that from the day they log in to our Slack will see what everyone else is doing, and most importantly: How they are doing it. 
 
 ![heim deploys](/public/images/heim_deploys.png)
 
