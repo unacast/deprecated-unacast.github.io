@@ -47,7 +47,7 @@ For my greeting experiment I chose to implement a mock Unacast employee app that
 Out of the three techniques I've described in this post I would only consider the native app one to be usable for my Unacastle greeting use case. 
 That's the only way I could give the user a real notification, not just a silent card on the lock screen (or worse, in the notification center). 
 But if Chrome or [Opera](https://dev.opera.com/articles/release-the-beacons/) takes their Eddystone-URL support a bit further and ads notification possibilities of some kind, it would be an easy and wide-reaching alternative to native apps.
-
+These are examples of the kind of interactions that Unacast helps integrate into the digital world.
 
 
 
