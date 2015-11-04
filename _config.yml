@@ -2,7 +2,7 @@
 #
 # Use of `relative_permalinks` ensures post links from the index work properly.
 permalink:           pretty
-relative_permalinks: true
+relative_permalinks: false
 
 # Setup
 title:               Unacast Labs
@@ -11,6 +11,8 @@ description:         'Made with &#9829; by <a href="http://unacast.com">Unacast<
 url:                 http://unacast.io
 baseurl:             ''
 paginate:            5
+gems :
+    - jekyll-paginate
 
 # About/contact
 author:

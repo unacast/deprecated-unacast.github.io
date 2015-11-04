@@ -3,3 +3,13 @@ img.author-avatar {
   display: inline;
   margin: 0;
 }
+
+img[alt=wallet]{
+  width: 350px;
+}
+img[alt=chrome]{
+  width: 350px;
+}
+img[alt=app]{
+  width: 350px;
+}
