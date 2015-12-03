@@ -5,10 +5,9 @@ description: "The ramblings of the engineers here at the Unacastle"
 tags: [Unacast, tech, blog, proximity, iBeacons, eddystone, beacons]
 comments: false
 image:
-  feature: lab.jpg
-  <!-- feature: computer_room.jpg -->
-  credit: Wikipedia
-  creditlink: https://upload.wikimedia.org/wikipedia/commons/c/c6/AlbanyStateUniversity_ComputerOperationsRoom_1981_3_skaliert.jpg
+  feature: martin_balkong.jpg
+  <!-- credit: Wikipedia -->
+  <!-- creditlink: https://upload.wikimedia.org/wikipedia/commons/c/c6/AlbanyStateUniversity_ComputerOperationsRoom_1981_3_skaliert.jpg -->
   <!-- creditlink: https://upload.wikimedia.org/wikipedia/commons/6/66/PAVE_Paws_Computer_Room.jpg  -->
 ---
 
@@ -21,9 +20,15 @@ image:
       </div><!-- /.entry-image -->
     {% endif %}
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="{{ post.date | date_to_xmlschema }}"><a href="{{ site.url }}{{ post.url }}">{{ post.date | date: "%B %d, %Y" }}</a></time></span><span class="author vcard"><span class="fn">
-          <a href="https://github.com/{{post.ghname}}">{{post.ghname}}</a>, {{page.jobtitle}}
-        </span></span>
+      <span class="entry-date date published updated"><time datetime="{{ post.date | date_to_xmlschema }}">
+        <a href="{{ site.url }}{{ post.url }}">{{ post.date | date: "%B %d, %Y" }}</a></time>
+      </span>
+      <span class="author vcard">
+        <span class="fn">
+          <img alt="@{{post.ghname}}" class="author-avatar" src="https://avatars0.githubusercontent.com/u/{{post.ghavatar}}?v=3&am">
+          <a href="https://github.com/{{post.ghname}}">{{post.ghname}}</a>
+        </span>
+      </span>
       {% if site.reading_time %}
       <span class="entry-reading-time">
         <i class="fa fa-clock-o"></i>

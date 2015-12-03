@@ -107,7 +107,7 @@ body {
 	left: -50%; 
 	width: 200%; 
 	height: 200%;
-	min-height: 400px;
+	min-height: 600px;
 	overflow: hidden;
 	&:after {
 		content: '';
@@ -120,12 +120,12 @@ body {
 	}
 	img {
 		position: absolute; 
-		top: 0; 
+		top: -100px; 
 		left: 0; 
 		right: 0; 
 		bottom: 0; 
 		margin: auto; 
-		min-width: 50%;
+		max-width: 50%;
 		min-height: 400px; // match .entry-image min-height
 	}
 }
