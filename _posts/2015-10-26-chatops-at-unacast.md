@@ -11,14 +11,14 @@ jobtitle: Lead Platform Engineer
   The Unacast tech team has invested heavily in ChatOps, this post gives an overview over our deployment system and the advantages it gives us both in a short, and longer term.
 </div>
 
-![Hubot](/images/hubot.jpg)
+![Hubot](/images/chatops/hubot.jpg)
 
 ### ChatOps?!?
 ChatOps is a term often credited to <a href="https://www.youtube.com/watch?v=NST3u-GjjFw">GitHub</a>, and it is all about putting the tools in the middle of the conversations. At Unacast most of our conversations go through Slack, and when we integrated ChatOps into our workflow we got the tools closer to the conversation.
 
 So, what is ChatOps? For us it is the the action of triggering stuff from Slack instead of pressing buttons on a dashboard or runing shell scripts from the command-line. It is your monitoring tool posting alerts to chat instead of sending you an email. It is about deployment, monitoring and operation in the context of a conversation. It also democratises the deployment process, so the Product Owners can do the actual deployment to production.
 
-![Kjartan deploys](/images/kjartan_deploys.png) 
+![Kjartan deploys](/images/chatops/kjartan_deploys.png) 
 
 
 ### Why are we doing ChatOps, and why should you?
@@ -30,7 +30,7 @@ This is why ChatOps is huge for us. By showing everyone else what you are doing,
 
 This is especially important to us, who are now hiring our next 10 developers. This means that from the day they log in to our Slack will see what everyone else is doing, and most importantly: How they are doing it. 
 
-![heim deploys](/images/heim_deploys.png)
+![heim deploys](/images/chatops/heim_deploys.png)
 
 From deploying an app to production, to splitting traffic between versions and to cancel processing jobs, everything is documented in real-time as it happens.
 
