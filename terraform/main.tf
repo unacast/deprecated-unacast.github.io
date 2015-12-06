@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "unacast-io" {
   acl = "public-read"
 
   website {
-    redirect_all_requests_to = "www.unacast.io"
+    redirect_all_requests_to = "labs.unacast.io"
   }
 
   tags {
@@ -38,6 +38,14 @@ resource "aws_route53_record" "naked" {
 resource "aws_route53_record" "www" {
   zone_id = "${var.hosted_zone_id}"
   name = "www.unacast.io"
+  type = "CNAME"
+  ttl = 60
+  records = ["unacast.github.io"]
+}
+
+resource "aws_route53_record" "labs" {
+  zone_id = "${var.hosted_zone_id}"
+  name = "labs.unacast.io"
   type = "CNAME"
   ttl = 60
   records = ["unacast.github.io"]
