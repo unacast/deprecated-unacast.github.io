@@ -14,7 +14,7 @@ jobtitle: Lead Platform Engineer
 
 ## Background story
 
-Last monday I was experimenting with some new log metrics on our platform. I wanted to make sure that all our alerting rules for errors in the log was correctly reported and sent to our ops-channel in Slack. 
+Last monday I was experimenting with some new log metrics on our platform. I wanted to make sure that all our alerting rules for errors in the log was correctly reported and published to our ops-channel in Slack. 
 
 Specifically I wanted to make sure that if the queue that connects our outward API with our processing engine was inaccessible the bells would start to ring. 
 
