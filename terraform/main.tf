@@ -15,7 +15,7 @@ resource "aws_s3_bucket" "unacast-io" {
   acl = "public-read"
 
   website {
-    redirect_all_requests_to = "labs.unacast.io"
+    redirect_all_requests_to = "labs.unacast.com"
   }
 
   tags {
@@ -40,7 +40,7 @@ resource "aws_s3_bucket" "www-unacast-io" {
   acl = "public-read"
 
   website {
-    redirect_all_requests_to = "labs.unacast.io"
+    redirect_all_requests_to = "labs.unacast.com"
   }
 
   tags {
@@ -59,12 +59,27 @@ resource "aws_route53_record" "www" {
   }
 }
 
+resource "aws_s3_bucket" "labs-unacast-io" {
+  bucket = "labs.unacast.io"
+  acl = "public-read"
+
+  website {
+    redirect_all_requests_to = "labs.unacast.com"
+  }
+
+  tags {
+    Name = "Domain forwarding"
+  }
+}
 resource "aws_route53_record" "labs" {
   zone_id = "${var.hosted_zone_id}"
   name = "labs.unacast.io"
-  type = "CNAME"
-  ttl = 60
-  records = ["unacast.github.io"]
+  type = "A"
+  alias {
+    name = "${aws_s3_bucket.labs-unacast-io.website_domain}"
+    zone_id = "${aws_s3_bucket.labs-unacast-io.hosted_zone_id}"
+    evaluate_target_health = false
+  }
 }
 
 
