@@ -14,16 +14,16 @@ jobtitle: Lead Platform Engineer
 
 ## Background story
 
-Last monday I was experimenting with some new log metrics on our platform. I wanted to make sure that all our alerting rules for errors in the log was correctly reported and published to our ops-channel in Slack. 
+Last monday I was experimenting with some new log metrics on our platform. I wanted to make sure that all our alerting rules for errors in the log were correctly reported and published to our ops-channel in Slack. 
 
 Specifically I wanted to make sure that if the queue that connects our outward API with our processing engine was inaccessible the bells would start to ring. 
 
 Our API is designed to use a local backup-store if our queue experiences problems, and there is a batch job that regularly checks the backup-store and tries to re-send the data to the queue for further processing. This introduces a significant delay in our processing time, and is of course something we prefer to avoid, hence the aggressive alerting when this happens.
 
-To test that the alerts really got triggered I did the simplest thing that I could think of, and introduced a deliberate error in the API so that it would try to push data to a non-existing queue.  
+To test that the alerts really were triggered I did the simplest thing that I could think of, and introduced a deliberate error in the API so that it would try to push data to a non-existing queue.  
 I then deployed this to our staging environment, and made sure that the propert alerts showed up when I tried to post something to the API.
 
-By now it was getting kind of late, and I had planned to go to the local [DevOps meetup](http://www.meetup.com/devops-norway/) to listen to amongst others Kelsey Hightower from Google speak about [Kubernetes](http://kubernetes.io/).
+By now it was getting kind of late, and I had planned to go to the local [DevOps meetup](http://www.meetup.com/devops-norway/) to listen to (amongst others) Kelsey Hightower from Google speak about [Kubernetes](http://kubernetes.io/).
 
 Feeling confident, I deployed the branch to production and left the offices, intentionally leaving my mac behind.
 
