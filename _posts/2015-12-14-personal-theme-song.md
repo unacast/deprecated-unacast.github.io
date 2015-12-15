@@ -16,7 +16,7 @@ In my last post ["Welcome to Unacastle"]({% post_url 2015-11-03-welcome-to-unaca
 humble [Unacastle](http://unacast.com/contact/). None of them are particularly elegant, ubiquitous or fun, so I wanted to find some other way to showcase
 proximity based greetings.
 
-The solution revealed it self after a meeting we had with a couple of the guys at [Writeup](https://writeup.com/), another Norwegian proximity focused startup with the tagline:
+The solution revealed it self after we had a meeting with a couple of the guys at [Writeup](https://writeup.com/). They are a Norwegian proximity focused startup with the tagline:
 
 > Create your own proximity message service with iBeacons
 
@@ -24,7 +24,7 @@ They gave us one of their beacons to play around with (the white one to the righ
 
 ![writeup beacon](/images/themesong/writeup-beacon.jpg) 
 
-and when I discovered that Writeup allows you to specify a webhook, that will fire upon interaction, I got a :bulb:
+and when I discovered that Writeup allows you to specify a webhook, that will fire upon interaction, I got an :bulb:
 
 <div class="message">
   What if I could make our dashboard TV in the hallway play a personalized theme song when we get into the
@@ -48,7 +48,7 @@ It goes a little something like this.
 The last thing we needed to sort out was what songs to play and map them to our ids. We ended up with a quite interesting collection of tunes, e.g:
 
 - :notes: Imperial March :notes:
-- :notes: Every day I'm Hustlin :notes:
+- :notes: Every day I'm Hustlin' :notes:
 - :notes: My Heart Will Go On :notes:
 
 And this is what Andreas' personal theme song sounds (and looks) like.
