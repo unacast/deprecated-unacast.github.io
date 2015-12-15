@@ -36,6 +36,7 @@ highlighter: pygments
 markdown:    kramdown
 gems:
   - jekyll-sitemap
+  - jemoji
 sass:
   sass_dir: _sass
   style: compressed
