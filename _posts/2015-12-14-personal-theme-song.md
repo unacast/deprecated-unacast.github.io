@@ -24,7 +24,7 @@ They gave us one of their beacons to play around with (the white one to the righ
 
 ![writeup beacon](/images/themesong/writeup-beacon.jpg) 
 
-and when I discovered that Writeup allows you to specify a webhook, that will fire upon interaction, I got an :bulb:
+and when I discovered that Writeup allows you to specify a webhook that will fire upon interaction, I got an :bulb:
 
 <div class="message">
   What if I could make our dashboard TV in the hallway play a personalized theme song when we get into the
