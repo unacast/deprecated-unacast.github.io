@@ -51,6 +51,12 @@ The last thing we needed to sort out was what songs to play and map them to our 
 - :notes: Every day I'm Hustlin' :notes:
 - :notes: My Heart Will Go On :notes:
 
+###Update:
+Here's Kjartan entering the Unacastle from the hallway.
+
+<iframe width="420" height="315" src="https://www.youtube.com/embed/O9HmrqFCWTM" frameborder="0" allowfullscreen></iframe>
+
+
 And this is what Andreas' personal theme song sounds (and looks) like.
 
 <iframe width="420" height="315" src="https://www.youtube.com/embed/yWMJz8nfBHE" frameborder="0" allowfullscreen></iframe>
