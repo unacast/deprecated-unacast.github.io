@@ -10,7 +10,7 @@ jobtitle: Lead API and Integration Engineer
   Disclaimer: The title is ironic. SEO is in fact a huge task, and this post is just a small summary of my experiencies of working hands on with it.
   Most self-proclaimed "SEO experts" will just tell you that SEO is important and that you should use keywords and some tags. That is not wrong, but it will only take you
   part of the way of increasing traffic to your site, which is what SEO is really about. Especially, the term SEO misses out on
-  the most important channel, social media.
+  an equally important channel, social media.
 </div>
 
 ## Motivation
