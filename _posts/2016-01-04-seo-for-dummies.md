@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "Seo for dummies"
+title: "SEO for dummies"
 ghavatar: 4218596
 ghname: martinsahlen
 jobtitle: Lead API and Integration Engineer
 ---
 
 <div class="message">
-  Disclaimer: The title is ironic. SEO is in fact a huge task, and this post is just a small summary of my experiencies of working hands on with it.
+  Disclaimer: The title is ironic. Search Engine Optimization is in fact a huge task, and this post is just a small summary of my experiences of working hands on with it.
   Most self-proclaimed "SEO experts" will just tell you that SEO is important and that you should use keywords and some tags. That is not wrong, but it will only take you
   part of the way of increasing traffic to your site, which is what SEO is really about. Especially, the term SEO misses out on
   an equally important channel, social media.
@@ -25,9 +25,7 @@ less overhead of unnecessary page loads.
 
 “The next level” in these terms meant that we certainly could see that the site got more traffic and usage - especially
 in terms of how long time users spend on the page. Consider it a funnel - users enters the page, some leave (bounce)
-and some stay, or move to other sub-pages, creating a flow chart of a user journey.
-
-In order to boost these numbers, we realized that we had to look at SEO (Search Engine Optimization).
+and some stay, or move to other sub-pages, creating a flow chart of a user journey. In order to boost these numbers, we realized that we had to look at SEO.
 Proxbook had pretty low scores on all parameters (using Google Pagespeed / Google webmaster tools and similar). So, what is SEO, and what are the important parameters
 for getting your site high up the search engine indices?
 
@@ -35,9 +33,9 @@ for getting your site high up the search engine indices?
 Most technologists want to focus on building kickass stuff on bleeding edge technology,
 but this often mixes bad with SEO (not by definition, but optimization is usually not the first that comes to mind when learning new stuff).
 I myself thought SEO was mainly about adding some keywords in the page header,
-but my initial research revealed that SEO is actually become quite comprehensive. The list below describes what
+but my initial research revealed that SEO has actually become quite comprehensive. The list below describes what
 I’ve found, it is probably not exhaustive - but it definitely shows that SEO is something that must be grounded in
-all aspects of a website, from copywriters, to designers and developers:
+all aspects of a website, from copywriters and authors to designers and developers:
 
 * Semantic HTML
     * use section, article, nav, h1, h2, don't use background images that are relevant for the content, use image alt text etc
@@ -49,7 +47,7 @@ all aspects of a website, from copywriters, to designers and developers:
     * https://schema.org/docs/gs.html
     * Using special markup to display products, locations, companies etc. nicely in the Google search.
 * Page loading time
-    * Caching of assets - images, fonts etc (yes, google will tell you this)
+    * Caching of assets - images, fonts etc (yes, Pagespeed will tell you this - essentially means that you should set long expiration times)
     * Gzip Compression, image sizes, file sizes, minifying html / js / css.
 * Content itself
     * Meta keywords, description and page title
@@ -138,7 +136,7 @@ Some well known articles on these topics are
 
 These describes the mechanics of getting crawlers to 1) understand that your page is a SPA and 2) serve an HTML snapshot of a requested page.
 It was a bit difficult to understand whether it applied to sites using hashbang-navigation or pushstate-based navigation as proxbook does to
-get more visually appealing URLs.
+get more visually appealing URLs. To some degree, they also seem to be a bit outdated.
 
 To my surprise, the Google bot seemed to pick up all links and crawl the page, as well as displaying these links in the search
 out of the box, even before we started diving into the SEO. The articles mentioned indicate that you must do special stuff for achieving this, but Google is notoriously secretive about these things actually work and from
@@ -262,7 +260,8 @@ also a humbling and learning experience. At the end of the day, I'm glad i'm not
 
 There are probably many of you that have a lot more of experience with this, this just sums up my experiences with working on this for
 a short period of time. There are many things that can be done better, for instance using redis, in-memory or disk to cache the html
-snapshots for a certain amount of time to increase snappiness and maybe avoid the (if applicable) penalty on the SEO ranking.
+snapshots for a certain amount of time to increase snappiness and maybe avoid the (if applicable) penalty on the SEO ranking. The image conversion
+could also have been done directly on S3 without going through Django and changing their names. But you live and learn, and it works OK so why bother?
 
 There is a lot of material avaiable on this topic online, but I didn't manage to find any material that was really up to date
 and that included both SEO and social media optimization for SPAs. I hope this post can be helpful for any of you that are
