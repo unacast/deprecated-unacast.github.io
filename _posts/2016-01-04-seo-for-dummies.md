@@ -37,7 +37,7 @@ but this often mixes bad with SEO (not by definition, but optimization is usuall
 I myself thought SEO was mainly about adding some keywords in the page header,
 but my initial research revealed that SEO is actually become quite comprehensive. The list below describes what
 I’ve found, it is probably not exhaustive - but it definitely shows that SEO is something that must be grounded in
-all aspects of a website, from copywriters, to designers and developers.
+all aspects of a website, from copywriters, to designers and developers:
 
 * Semantic HTML
     * use section, article, nav, h1, h2, don't use background images that are relevant for the content, use image alt text etc
@@ -256,9 +256,10 @@ sitemap using var <a target="_blank" href=" https://github.com/oozcitak/xmlbuild
  to speed up the rendering by running all API calls in parallel.
 
 ## Wrapping it up
-So, we have now achieved our goal. The search engines understand our content as well as social networks. Goal achieved.
+So, the search engines understand our content as well as social networks. Goal achieved.
 It was at times a nitty gritty project with some tasks that were pretty boring, and some tasks were challenging and fun to work with. It was
 also a humbling and learning experience. At the end of the day, I'm glad i'm not in the SEO business myself, it's really really hard work.
 
 There are probably many of you that have a lot more of experience with this, this just sums up my experiences with working on this for
-a short period of time. If you think that any of this sounds completely absurd, or if you found it enlightening, please let us know.
+a short period of time. There are many things that can be done better, for instance using redis, in-memory or disk to cache the html
+snapshots for a certain amount of time to increase snappiness and maybe avoid the (if applicable) penalty on the SEO ranking.
