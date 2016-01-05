@@ -140,7 +140,7 @@ These describes the mechanics of getting crawlers to 1) understand that your pag
 It was a bit difficult to understand whether it applied to sites using hashbang-navigation or pushstate-based navigation as proxbook does to
 get more visually appealing URLs.
 
-To our surprise, the Google bot seemed to pick up all links and crawl the page, as well as displaying these links in the search
+To my surprise, the Google bot seemed to pick up all links and crawl the page, as well as displaying these links in the search
 out of the box, even before we started diving into the SEO. The articles mentioned indicate that you must do special stuff for achieving this, but Google is notoriously secretive about these things actually work and from
 my experience they will often put things in production and test it long before they add official documentation.
 
@@ -250,7 +250,7 @@ in the bot list, it was just to safeguard based on reading around the web and st
 show which ones are actually used by the crawlers.
 
 We also generated the sitemap server-side by calling the API and populating an XML file with all the content that we wanted in the
-sitemap using var <a target="_blank" href=" https://github.com/oozcitak/xmlbuilder-js">xmlbuilder-js</a>
+sitemap using <a target="_blank" href=" https://github.com/oozcitak/xmlbuilder-js">xmlbuilder-js</a>
   and
 <a target="_blank" href=" https://github.com/caolan/async">async</a>
  to speed up the rendering by running all API calls in parallel.
@@ -263,3 +263,8 @@ also a humbling and learning experience. At the end of the day, I'm glad i'm not
 There are probably many of you that have a lot more of experience with this, this just sums up my experiences with working on this for
 a short period of time. There are many things that can be done better, for instance using redis, in-memory or disk to cache the html
 snapshots for a certain amount of time to increase snappiness and maybe avoid the (if applicable) penalty on the SEO ranking.
+
+There is a lot of material avaiable on this topic online, but I didn't manage to find any material that was really up to date
+and that included both SEO and social media optimization for SPAs. I hope this post can be helpful for any of you that are
+struggling on this. As we figured out in this post, my solution in itself isn't too many lines of code, but the journey to get there
+was long. And it probably never ends as web technology is changing from day to day.
