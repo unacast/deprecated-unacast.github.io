@@ -93,7 +93,8 @@ to get the image, then <a target="_blank" href=" https://pypi.python.org/pypi/Pi
 an acceptable size and save them back to S3. The last part is already handled by Django / boto using S3 as primary file storage.
 
 This script did most of the heavy lifting for updating the logos:
-<pre>
+
+{% highlight python %}
 size = 600, 600
     if PRODUCTION_MODE:
         for company in Company.objects.all():
@@ -116,7 +117,8 @@ size = 600, 600
                 company.logo = logo_image_file
                 company.save()
                 print 'Successfully converted logo for ' + company.name
-</pre>
+{% endhighlight %}
+
 Lastly, a manual inspection of background images, css and similar etc was done to optimize / resize and remove duplicate css.
 
 These steps combined got The pagespeed index from about 2% to 79%, a very decent increase considering the amount of time
@@ -150,7 +152,7 @@ the requesting entity based on the escaped_fragment semantics described in the a
 case, so based on those I created a simple express middleware that instead looked at the user-agent that requested the page,
 and pre-rendered the page for the user-agents we identify as bots from twitter, facebook and crawlers:
 
-<pre>
+{% highlight javascript %}
 var knownBots = [
   'Twitterbot',
   'LinkedInBot/1.0',
@@ -202,7 +204,8 @@ function crawlerMiddleWare(req, res, next) {
     next();
   }
 }
-</pre>
+{% endhighlight %}
+
 A bit hackish, but it seems to work - enabling us to share customized links on social networks and increasing the value
 of the content on proxbook. We tested this on facebook, twitter and linkedin, which are the most important platforms for us.
 
@@ -211,7 +214,7 @@ on each http request that checks if there are any pending requests. If there are
 (the phantom browser exposes a *callPhantom* function to the window object) that
 tells it that the rendering is completed, with a safety interval of 500ms:
 
-<pre>
+{% highlight javascript %}
 (function() {
   'use strict';
 
@@ -235,7 +238,7 @@ tells it that the rendering is completed, with a safety interval of 500ms:
     };
   }
 })();
-</pre>
+{% endhighlight %}
 
 It is not necessary to use a callback to achieve this,
 one can also set a timeout for a couple of seconds and just assume that everything is rendered by that time. The best approach would in that case be
