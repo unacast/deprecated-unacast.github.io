@@ -143,7 +143,9 @@ out of the box, even before we started diving into the SEO. The articles mention
 my experience they will often put things in production and test it long before they add official documentation.
 
 So, the site would now be crawled and indexed, but we still experienced problems with sharing content on social media (manual testing indicated that it didn't work).
-mean-seo, angular-seo had solutions that basically used phantom to render html and send the generated html snapshot to
+ <a target="_blank" href=" mean-seo https://www.npmjs.com/package/mean-seo">mean-seo</a> and
+ <a target="_blank" href=" mean-seo https://github.com/steeve/angular-seo">angular-seo </a>
+ had solutions that basically used phantom to render html and send the generated html snapshot to
 the requesting entity based on the escaped_fragment semantics described in the articles. This was not a good fit for our
 case, so based on those I created a simple express middleware that instead looked at the user-agent that requested the page,
 and pre-rendered the page for the user-agents we identify as bots from twitter, facebook and crawlers:
@@ -267,3 +269,11 @@ There is a lot of material avaiable on this topic online, but I didn't manage to
 and that included both SEO and social media optimization for SPAs. I hope this post can be helpful for any of you that are
 struggling on this. As we figured out in this post, my solution in itself isn't too many lines of code, but the journey to get there
 was long. And it probably never ends as web technology is changing from day to day.
+
+If you want to pay for these kinds of services, you can check out these:
+
+* <a href="https://prerender.io/" target="_blank">Prerender.io</a>
+* <a href="http://www.brombone.com/" target="_blank">Brombone</a>
+* <a href="http://getseojs.com/" target="_blank">SEO.js</a>
+
+But after reading this, why would you?
