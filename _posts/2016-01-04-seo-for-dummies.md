@@ -227,3 +227,6 @@ sitemap using var <a target="_blank" href=" https://github.com/oozcitak/xmlbuild
 So, we have now achieved our goal. The search engines understand our content as well as social networks. Goal achieved.
 It was at times a nitty gritty project with some tasks that were pretty boring, and some tasks were challenging and fun to work with. It was
 also a humbling and learning experience. At the end of the day, I'm glad i'm not in the SEO business myself, it's really really hard work.
+
+There are probably many of you that have a lot more of experience with this, this just sums up my experiences with working on this for
+a short period of time. If you think that any of this sounds completely absurd, or if you found it enlightening, please let us know.
