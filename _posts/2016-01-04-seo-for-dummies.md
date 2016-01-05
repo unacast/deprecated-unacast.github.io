@@ -203,13 +203,45 @@ function crawlerMiddleWare(req, res, next) {
   }
 }
 </pre>
-
-Phantom fires up, and loads the original url. When Angular starts up, it fires all API requests. Then, there is a callback
-on each http request that checks if there are any pending requests. If there are none, it fires a callback to phantom that
-tells it that the rendering is completed, with a safety interval of 500ms.
-
 A bit hackish, but it seems to work - enabling us to share customized links on social networks and increasing the value
 of the content on proxbook. We tested this on facebook, twitter and linkedin, which is the most important platforms for us.
+
+How does it work? If we are dealing with at bot request, Phantom fires up, and loads the original url. When Angular starts up, it fires all API requests as usual. Then, there is a callback
+on each http request that checks if there are any pending requests. If there are none, it fires yet another callback to phantom
+(the phantom browser exposes a *callPhantom* function to the window object) that
+tells it that the rendering is completed, with a safety interval of 500ms:
+
+<pre>
+(function() {
+  'use strict';
+
+  angular
+    .module('proxbook')
+    .run(SeoRunConfig);
+
+  SeoRunConfig.$inject = [
+    '$rootScope'
+  ];
+
+  function SeoRunConfig($rootScope) {
+    $rootScope.htmlReady = function() {
+      $rootScope.$evalAsync(function() { // fire after $digest
+        setTimeout(function() { // fire after DOM rendering
+          if (typeof window.callPhantom == 'function') {
+            window.callPhantom();
+          }
+        }, 500);
+      });
+    };
+  }
+})();
+</pre>
+
+It is not necessary to use a callback to achieve this,
+one can also set a timeout for a couple of seconds and just assume that everything is rendered by that time. The best approach would in that case be
+to load your site a certain number of times to make it statistically significant, and take the average of the total loading time and add
+a safety interval. I tried that as well, and it worked. But since Angular has good support for looking at the number of pending http requests,
+the callback approach seemed the more "correct" way of doing it.
 
 In the time ahead, we may turn of this rendering for Googlebot (and / or other), as it already seems to understand
 our page without upfront-rendering. Considering the significant performance penalty of rendering pages in this manner, it
