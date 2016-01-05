@@ -202,7 +202,7 @@ function crawlerMiddleWare(req, res, next) {
 }
 </pre>
 A bit hackish, but it seems to work - enabling us to share customized links on social networks and increasing the value
-of the content on proxbook. We tested this on facebook, twitter and linkedin, which is the most important platforms for us.
+of the content on proxbook. We tested this on facebook, twitter and linkedin, which are the most important platforms for us.
 
 How does it work? If we are dealing with at bot request, Phantom fires up, and loads the original url. When Angular starts up, it fires all API requests as usual. Then, there is a callback
 on each http request that checks if there are any pending requests. If there are none, it fires yet another callback to phantom
