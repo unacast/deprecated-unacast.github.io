@@ -41,7 +41,8 @@ The following gist shows a simplified version of our deploy script. It assumes t
 
 <script src="https://gist.github.com/heim/ce686b7d74d222d82611.js"></script>
 
-This is by no means a fail-proof script, and this only proves the point that the Kubernetes authors really need to finish their [Deployment API] (https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/proposals/deployment.md) really soon.
+This is by no means a fail-proof script, and this only proves the point that the Kubernetes authors really need to finish their 
+[Deployment API](https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/proposals/deployment.md) really soon.
 
 ## 3. Monitoring
 GKE comes with a monitoring solution from Google (Google Cloud Monitoring), that gives insight into amongst others cpu and memory usage for your pods. We have found the bundled monitoring solution to lack some important aspects, so we opted to use [DataDog](http://datadoghq.com/) for our monitoring needs. 
