@@ -13,7 +13,7 @@ jobtitle: Lead Platform Engineer
 <img src="/images/k8s/k8slogo.png" alt="k8s logo" width="300px">
 
 
-## A little about our setup
+## Some words about our setup
 We are running Kubernetes (K8S) on Google Container Engine (GKE). GKE is hosting the Kubernetes master so we don't need to worry about it going down. We also run different clusters for different environments, to ensure that if we screw up in development, it does not affect production. It should be noted that this post is not to be considered an introduction to Kubernetes, and will not necessarily explain concepts in detail. Please refer to the excellent [Kubernetes documentation](https://k8s.io) for an introduction.
 
 ## 1. Environment detection
