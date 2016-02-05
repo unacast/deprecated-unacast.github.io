@@ -12,7 +12,7 @@ tags: [iBeacon, beacons, writeup, theme song, greeting, raspberrypi, Pi-LITE, Ti
 
 ## The usual recap
 
-In my two previous post (["Welcome to Unacastle"]({% post_url 2015-11-03-welcome-to-unacastle %}), ["Your own personal theme song"]({% post_url 2015-12-14-personal-theme-song %})) 
+In my two previous posts (["Welcome to Unacastle"]({% post_url 2015-11-03-welcome-to-unacastle %}), ["Your own personal theme song"]({% post_url 2015-12-14-personal-theme-song %})) 
 I've been writing about a little side project I've got going here at [Unacast](http://unacast.com) were I try to leverage beacon technology to create personalized greetings when we enter 
 the office.
 
