@@ -26,7 +26,7 @@ partner meetings with one of these:
 ![tibe](/images/pilite/tibe.jpg)
 It was just what I needed to make this work. 
 The [Ti'Be](https://www.mytibe.com/home) is a small beacon that you can attach
-to your keys (or anything that you tend to misplace) that connects to an app
+to your keys (or anything that you tend to misplace). It connects to an app
 that among other things can locate the keys for you. Since this is a beacon
 that I carry with me when I go to work every day, my plan was to create a
 scanner that triggers an action when the Ti'Be gets in range. 
