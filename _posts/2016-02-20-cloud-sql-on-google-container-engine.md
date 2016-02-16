@@ -12,7 +12,7 @@ If you are already working on the Google Cloud Platform you are likely to be fam
 
 According to the Cloud SQL documentation it is recommended to connect from GKE using a separate [SQL-Proxy](). When running, this proxy will handle authentication to your Cloud SQL instance. Connecting to Cloud SQL from your application will then be as easy as connecting to the host+port  of your SQL-Proxy instance, no password or further authentication necessary.
 
-Using the SQL-Proxy is not strictly necessary, one could connect a GKE application to Cloud-SQL instance in [other]() more or less manual fashions. We did not chase those paths however as using SQL-Proxy was the solution afforded by Google and the Google Cloud Platform.
+Using the SQL-Proxy is not strictly necessary, one could connect a GKE application to Cloud-SQL instance in [other]() more or less manual fashions. We did not chase those paths however as using SQL-Proxy is the solution recommended by Google and the Google Cloud Platform.
 
 As the SQL-Proxy would have to run in a separate process there are numerous ways in which we could run it. Deciding upon an approach we gave weight to the following properties to be important: avoiding extra network jumps and transparency &mdash; it should be trivial to understand the purpose of the SQL-Proxy and its connection to our Java application.
 
