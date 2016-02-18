@@ -4,6 +4,7 @@ title: "A Journey: Connecting Google Container Engine and Cloud SQL"
 ghavatar: 831318
 ghname: frodebjerke
 jobtitle: Platform Engineer
+tags: [devops, cloud, google-container-engine, cloud-sql, google-cloud-platform, gke]
 ---
 
 This post is a post-mortem of a two minute job taking us three days. Our two minute job at hand was connecting a Java application running on Google Container Engine to Cloud SQL. Normally a straightforward job, but due to several constraints it turned out to be a bit of a hustle.
