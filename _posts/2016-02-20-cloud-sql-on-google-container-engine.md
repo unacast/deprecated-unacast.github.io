@@ -24,7 +24,7 @@ In [Pods](https://cloud.google.com/container-engine/docs/pods/) on Kubernetes yo
 
 Being loosely-coupled, transparent and obtaining the two traits just mentioned we believe a side-car container is the preferred way of running SQL-Proxy.
 
-Unfortunately, rolling updates when running multiple containers in a pod is currently not supported on Kubernetes. As we rely on rolling updates to deploy at will, we had to abandon this solution for now. This feature is however [merged](https://github.com/kubernetes/kubernetes/pull/17111) in the Kubernetes source, so it should be available in one of the next releases.
+Unfortunately, rolling updates when running multiple containers in a pod is currently not supported on Kubernetes. As we rely on rolling updates to deploy at will, we had to abandon this solution for now. This feature is [merged](https://github.com/kubernetes/kubernetes/pull/17111) in the Kubernetes source and should therefore be available in one of the next releases.
 
 ## Try Two
 
@@ -56,42 +56,8 @@ A feature of [Go](https://golang.org/) make this approach more elegant than anti
 
 To ensure having an up-to-date SQL-Proxy we have included a step in our application build script to build the SQL-Proxy from source. Building the SQL-Proxy we start a separate docker container which builds from source, then outputs a tar stream of the binary. We used [Dockerception](https://github.com/jamiemccrindle/dockerception) as inspiration for this pattern. Unpacking and mounting the binary file to our final application container is then trivial.
 
-**Build application container script:**
-````BASH
-#!/bin/bash
+<script src="https://gist.github.com/frodebjerke/5270a791868653ddb8b6.js"></script>
 
-set -e
-
-docker build -t sql-proxy /path/to/sql-proxy-build-dockerfile
-docker run sql-proxy > cloud_sql_proxy.tar
-tar -xvf cloud_sql_proxy.tar -C bin/
-chmod +x bin/cloud_sql_proxy
-rm cloud_sql_proxy.tar
-
-if [ ! -f bin/cloud_sql_proxy ]; then
-  echo 'cloud_sql_proxy binary not created.'
-  exit 1;
-fi
-
-docker build -t your_container_name .
-````
-
-**SQL-proxy build dockerfile:**
-````dockerfile
-FROM golang
-
-RUN go get github.com/GoogleCloudPlatform/cloudsql-proxy/cmd/cloud_sql_proxy
-
-CMD cd $GOPATH/bin/ && tar -cf - cloud_sql_proxy
-````
-
-**Exerpt from application dockerfile:**
-````dockerfile
-COPY 'bin/cloud_sql_proxy' '/opt/bin/cloud_sql_proxy'
-
-CMD /opt/bin/cloud_sql_proxy -dir=/cloudsql -instances=some_instance_name:some_region:some_db_name=tcp:3306 & \
- java -jar application.jar
-````
 
 Of the thinkable solutions, this solution provides several desirable properties. Firstly, there will be no extra network jump as SQL-Proxy and application runs in the same container. Furthermore, it is quite transparent in design. If you inspect the application' Dockerfile you cannot fail to spot the SQL-Proxy being started before the application itself.
 
