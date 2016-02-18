@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "On Google Container Engine and connecting it Cloud SQL"
+title: "A Journey: Connecting Google Container Engine and Cloud SQL"
 ghavatar: 831318
 ghname: frodebjerke
 jobtitle: Platform Engineer
@@ -30,15 +30,7 @@ Unfortunately, rolling updates when running multiple containers in a pod is curr
 
 As we currently are unable to run SQL-Proxy in the same Pod, a second best option seems to run SQL-Proxy as a separate service. This entails giving up the desired property of ensuring no extra network jumps. As a temporary measure, it seemed a reasonable solution.
 
-The SQL-Proxy however is designed to run on the same node as its application.
-
-````go
-var err error
-if l, err = net.Listen(spl[0], "127.0.0.1:"+spl[1]); err != nil {
-  return nil, err
-}
-````
-*Snippet from [SQL-Proxy source](https://github.com/GoogleCloudPlatform/cloudsql-proxy/blob/1274cd3d89ac8826e1882355d60ffb2a0cdff116/cmd/cloud_sql_proxy/proxy.go#L133-L135)*
+The SQL-Proxy however is designed to run on the same node as its application. *Snippet from [SQL-Proxy source](https://github.com/GoogleCloudPlatform/cloudsql-proxy/blob/1274cd3d89ac8826e1882355d60ffb2a0cdff116/cmd/cloud_sql_proxy/proxy.go#L132-L136)*
 
 Then for this solution to be viable we would have to add a separate proxy in a side-car container in the SQL-Proxy Pod. That would leave us with the following flow:
 
@@ -62,3 +54,5 @@ To ensure having an up-to-date SQL-Proxy we have included a step in our applicat
 Of the thinkable solutions, this solution provides several desirable properties. Firstly, there will be no extra network jump as SQL-Proxy and application runs in the same container. Furthermore, it is quite transparent in design. If you inspect the application' Dockerfile you cannot fail to spot the SQL-Proxy being started before the application itself.
 
 ## Closing Notes
+
+Our journey tells a classic story from using systems not yet mature. Documentation tends to be incomplete and the preferred solutions to your problems are still only on the roadmap. On another note, our experience working with the Google Cloud Platform and GKE has mostly been exhilarating.
