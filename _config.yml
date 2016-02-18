@@ -1,5 +1,5 @@
-title:            Unacast Labs 
-description:      The Latest updates from the Unacast Tech Blog 
+title:            Unacast Labs
+description:      The latest updates from the Unacast Tech Blog 
 disqus_shortname: unacastlabs
 reading_time:     false
 words_per_minute: 200
@@ -15,19 +15,19 @@ owner:
   email:          hello@unacast.com
   # Social networking links used in footer. Update and remove as you like.
   twitter: unacast
-  facebook: unacast       
+  facebook: unacast
   github: unacast
-  linkedin: unacast       
+  linkedin: unacast
   instagram: unacast
 
 # Background image to be tiled on all pages
-background: 
+background:
 
 # Analytics and webmaster tools stuff goes here
-google_analytics: UA-69338945-1 
-google_verify:      
+google_analytics: UA-69338945-1
+google_verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
-bing_verify:         
+bing_verify:
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    Europe/Oslo
