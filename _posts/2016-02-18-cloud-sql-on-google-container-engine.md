@@ -35,9 +35,9 @@ The SQL-Proxy however is designed to run on the same node as its application. *S
 
 Then for this solution to be viable we would have to add a separate proxy in a side-car container in the SQL-Proxy Pod. That would leave us with the following flow:
 
-````
+```
 Application -> Proxy -> SQL-Proxy -> Cloud SQL
-````
+```
 
 Adding another step, the extra proxy, means adding complexity to an already at best mediocre solution. There must be something better.
 
