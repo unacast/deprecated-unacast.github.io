@@ -12,49 +12,44 @@ and user friendly RESTful APIs. At some point in the discussion we discussed
 what idempotency is and what it actually guarantees.
 That triggered my curiosity and I wanted to explore deeper into idempotency and
 how to create APIs design that could guarantee that updates are safe even in a
-largely distributed and concurrent environment.
+largely distributed and concurrent environment. So this post is about a few
+things you should consider when implementing idempotency into your APIs. 
 
-This post is a result of that exploration and includes two lessons I learned
-about idempotency that I want to share with you.
+The definition of idempotency ([wikipedia](https://en.wikipedia.org/wiki/Idempotence)):
 
-## The HTTP Spec: Safe vs Idempotent
-First, let us take a step back and take a look at two important properties of
-HTTP methods: Safe and Idempotent.
+> Idempotence is the property of certain operations in mathematics and computer
+> science, that can be applied multiple times without changing the result beyond
+> the initial application.
+
+That is, a HTTP method is idempotent if it guarantees that repeating a
+request multiple of times has the same effect as issuing the request once.
+This is especially important in the case of network failures. In such cases
+clients can repeat the same request multiple times without worrying about
+any unintended effects.
+
+
+## Safe vs Idempotent
+[Idempotent methods](https://tools.ietf.org/html/rfc7231#section-4.2.2)
+should not be confused with
+[safe methods](https://tools.ietf.org/html/rfc7231#section-4.2.1).
+In HTTP,
+method is safe if they are not expected to cause side effects.
+Meaning clients can send request to safe methods without worrying about
+causing any side effects or changes to the resource.
 
 The table below gives an overview of the different properties for the most
 popular HTTP methods used when implementing RESTful APIs,
 ``GET``, ``PUT``, ``POST`` and ``DELETE``.
 
 | Method | Safe | Idempotent |
-|--------|:----:|:----------:|
+|:-------|:----:|:----------:|
 | GET    | Yes  | Yes        |
 | PUT    | No   | Yes        |
 | POST   | No   | No         |
 | DELETE | No   | Yes        |
 
-So what the heck does it mean that a method is ``Safe`` or ``Idempotent`` ?
 
-#### Safe methods
-
-A HTTP method is safe if they are not expected to cause side effects.
-Meaning clients can send request to safe methods without worrying about
-causing any side effects or changes to the resource.
-
-#### Idempotent methods
-
-The definition of idempotence ([Wikipedia](https://en.wikipedia.org/wiki/Idempotence)):
-
-> Idempotence is the property of certain operations in mathematics and computer
-> science, that can be applied multiple times without changing the result beyond
-> the initial application.
-
-That is, a HTTP method is idempotent if it guarantees that a repeating a
-request multiple of times has the same effect as issuing the request once.
-
-## Lessons Learned
-
-
-### Lesson 1: Pragmatic vs Idempotency
+## Pragmatic vs Idempotency
 
 Being idempotent is important. However, it does not mean that you
 have to guarantee that a request one point
@@ -67,9 +62,9 @@ I believe that approach to be unnecessary cumbersome and pragmatism should
 trump idempotency in such cases.
 
 
-### Lesson 2: Idempotency does not avoid race conditions
+## Concurrency vs Idempotency
 
-A typical semantics to ensure idempotency for a ``PUT`` request is to
+A typical semantic used to ensure idempotency for a ``PUT`` request is to
 require the client to send all the values, including the ones
 that does not change, when updating an object. This approach results in an
 ``PUT`` that is idempotent but prone to race conditions both in case of
@@ -92,24 +87,40 @@ that idempotency does not ensure safe updates in case of concurrent environment.
 Also, consider how such API semantics in a large distributed environment can
 cause a a lot of data loss and race conditions if not properly implemented.
 
-#### Avoiding race conditions
-To avoid race conditions we introduce a version number to the data model:
+### Avoiding race conditions
+To avoid such race conditions we can implement the API with ``Optimistic Locking``
+semantics. We can do that by introducing a version number, or other methods such
+as an hash or timestamps, to the data model. I prefer using version numbers because
+they are easy to understand and update. I think timestamps is just a bad choice
+ because [clocks are hard to keep synchronized](https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwjog-O0q5PLAhUMIpoKHc9IC6YQFggnMAE&url=http%3A%2F%2Famturing.acm.org%2Fp558-lamport.pdf&usg=AFQjCNGDBbwvlZwKdG6k44j2O0gIOoEi9w).
+
+Assuming that we are using ``version`` numbers to implement Optimistic Locking.
+Each update of a resource must include a strictly monotonically increasing
+version number of the previous resources. That is if we have a resources
 
 ```js
 {
-  secret: "A", // or "B" for Bob
+  secret: "A",
   version: 1
 }
 ```
 
-and only allowing updates if ``version`` is monotonically increasing (a similar approach is implemented in distributed systems such as [etcd](https://coreos.com/etcd/)). If the
-version number is not correct then the API should respond with an error.
-By doing so we are strictly speaking sacrificing a bit idempotency
-for safe updates.
+then an update for the resource at hand must include ``version: 2``, e.g.
 
-Now, let us reconsider the case with ``Alice`` and ``Bob``. Using these semantics,
-``Alice`` cannot overwrite ``Bobs`` secret implicitly as before. ``Alice`` has
-to increment the ``version`` counter.
+```js
+{
+  secret: "B",
+  version: 2
+}
+```
 
-Of course implementing such semantics is a trade-off in complexity and should
-only be included if necessary.
+or it will be rejected.
+
+If no earlier version of an object exists. It is fair to assume that the version
+number is omitted.
+
+Now, let us reconsider the case with ``Alice`` and ``Bob``. Let us assume that
+``Alice``s first request was persisted and that ``Bob`` has persisted his secret
+``"B"``. If Alice retries her request with ``version: 1`` from earlier her request
+will fail since the version number ``1`` of her request is less ``2``.
+The only way for Alice to update the secret is to explicitly set ``version: 3``.
