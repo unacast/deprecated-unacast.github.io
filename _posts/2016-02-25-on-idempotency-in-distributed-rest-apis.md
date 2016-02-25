@@ -11,12 +11,13 @@ A few weeks back we have had a good discussion about how to design pragmatic
 and user friendly RESTful APIs. At some point in the discussion we discussed
 what idempotency is and what it actually guarantees.
 That triggered my curiosity and I wanted to explore deeper into idempotency and
-how we could create APIs that could guarantee that updates were safe even in a
+how to create APIs design that could guarantee that updates are safe even in a
 largely distributed and concurrent environment.
 
-This post is a summary of the two lessons I learned about idempotency.
+This post is a result of that exploration and includes two lessons I learned
+about idempotency that I want to share with you.
 
-## Safe vs Idempotent HTTP Methods
+## The HTTP Spec: Safe vs Idempotent
 First, let us take a step back and take a look at two important properties of
 HTTP methods: Safe and Idempotent.
 
@@ -84,7 +85,7 @@ This line of thought is correct, if we assume that ``Alice`` was the only only o
 trying to update the secret. Let us assume that an another user Bob
 was simultaneously trying to update the same ``secret`` as Alice to ``"B"``,
 and successfully did so in between ``Alice``'s two requests.  Then Alice's request
-will implicitly overwrite ``Bob``s ``secret`` and it will will be lost forever.
+will implicitly overwrite ``Bob``s ``secret`` and it will be lost forever.
 
 Even thought the example is fairly trivial example it illustrates pretty clear
 that idempotency does not ensure safe updates in case of concurrent environment.
