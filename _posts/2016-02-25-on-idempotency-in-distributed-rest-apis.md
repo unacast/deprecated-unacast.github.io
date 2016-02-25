@@ -13,7 +13,7 @@ what idempotency is and what it actually guarantees.
 That triggered my curiosity and I wanted to explore deeper into idempotency and
 how to create APIs design that could guarantee that updates are safe even in a
 largely distributed and concurrent environment. So this post is about a few
-things you should consider when implementing idempotency into your APIs. 
+things you should consider when implementing idempotency into your APIs.
 
 The definition of idempotency ([wikipedia](https://en.wikipedia.org/wiki/Idempotence)):
 
@@ -88,7 +88,7 @@ Also, consider how such API semantics in a large distributed environment can
 cause a a lot of data loss and race conditions if not properly implemented.
 
 ### Avoiding race conditions
-To avoid such race conditions we can implement the API with ``Optimistic Locking``
+To avoid such race conditions we can implement the API with [Optimistic Locking](http://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking)
 semantics. We can do that by introducing a version number, or other methods such
 as an hash or timestamps, to the data model. I prefer using version numbers because
 they are easy to understand and update. I think timestamps is just a bad choice
@@ -123,4 +123,16 @@ Now, let us reconsider the case with ``Alice`` and ``Bob``. Let us assume that
 ``Alice``s first request was persisted and that ``Bob`` has persisted his secret
 ``"B"``. If Alice retries her request with ``version: 1`` from earlier her request
 will fail since the version number ``1`` of her request is less ``2``.
-The only way for Alice to update the secret is to explicitly set ``version: 3``.
+The only way for Alice to update the secret is to explicitly set version to ``3``.
+Solving the race condition problem illustrated earlier.
+
+Remember that implementing optimistic locking is a trade-off between complexity
+and reliability, and should only be included if necessary.
+
+## Closing Notes
+
+API design is not necessarily straight forward and it consist of a
+lot of trade-offs. So by understanding how to apply principles such as
+idempotency and optimistic locking can be of great help. However, I am a
+strong believer of creating user friendly APIs. In case of doubt, be pragmatic
+and always strive to make your users happy. 
