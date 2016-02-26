@@ -7,13 +7,11 @@ jobtitle: Platform Engineer
 tags: [rest, api, distributed systems]
 ---
 
-A few weeks back we have had a good discussion about how to design pragmatic
-and user friendly RESTful APIs. At some point in the discussion we discussed
-what idempotency is and what it actually guarantees.
-That triggered my curiosity and I wanted to explore deeper into idempotency and
-how to create APIs design that could guarantee that updates are safe even in a
-largely distributed and concurrent environment. So this post is about a few
-things you should consider when implementing idempotency into your APIs.
+A few weeks back our team had a discussion about API design. The discussion was
+mostly about what we could do to design pragmatic and user friendly RESTful APIs.
+At some point in the discussion we discussed what idempotency is and what it
+actually guarantees. That sparked a curiosity in me, and I wanted to explore deeper
+into that.
 
 The definition of idempotency ([wikipedia](https://en.wikipedia.org/wiki/Idempotence)):
 
@@ -31,9 +29,8 @@ any unintended effects.
 ## Safe vs Idempotent
 [Idempotent methods](https://tools.ietf.org/html/rfc7231#section-4.2.2)
 should not be confused with
-[safe methods](https://tools.ietf.org/html/rfc7231#section-4.2.1).
-In HTTP,
-method is safe if they are not expected to cause side effects.
+[Safe methods](https://tools.ietf.org/html/rfc7231#section-4.2.1).
+In HTTP, method is safe if they are not expected to cause side effects.
 Meaning clients can send request to safe methods without worrying about
 causing any side effects or changes to the resource.
 
@@ -67,7 +64,7 @@ trump idempotency in such cases.
 A typical semantic used to ensure idempotency for a ``PUT`` request is to
 require the client to send all the values, including the ones
 that does not change, when updating an object. This approach results in an
-``PUT`` that is idempotent but prone to race conditions both in case of
+``PUT`` that is idempotent but prone to race conditions, both in case of
 network failure and in highly concurrent environments.
 
 Say ``Alice`` tries to update the ``secret`` to ``"A"`` and because the network
