@@ -97,8 +97,8 @@ version number of the previous resources. That is if we have a resources
 
 ```
 {
-  secret: "A",
-  version: 1
+  "secret": "A",
+  "version": 1
 }
 ```
 
@@ -107,8 +107,8 @@ it will be rejected,
 
 ```
 {
-  secret: "B",
-  version: 2
+  "secret": "B",
+  "version": 2
 }
 ```
 
