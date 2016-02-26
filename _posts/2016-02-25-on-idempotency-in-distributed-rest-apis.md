@@ -58,7 +58,7 @@ I believe that approach to be unnecessary cumbersome and pragmatism should
 trump idempotency in such cases.
 
 Being pragmatic about ``PUT``'s idempotence is common, either by purpose or by
-neglect. In the next part we will dive deeper in to the ramifications of
+carelessness. In the next part we will dive deeper in to the ramifications of
 relying too much on idempotency of ``PUT`` in a concurrent setting.
 
 ## Concurrency vs Idempotency
