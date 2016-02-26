@@ -48,22 +48,24 @@ popular HTTP methods used when implementing RESTful APIs,
 ## Pragmatic vs Idempotency
 
 Being idempotent is important. However, it does not mean that you
-have to guarantee that a request one point
-in time should always return the same result. E.g. applying ``DELETE`` on
-a existing resource multiple times should return ``HTTP Status: OK (200)``
+have to guarantee that a request one point in time should always return
+the same result. One examples of this is when we apply ``DELETE`` on
+an existing resource multiple times it should return ``HTTP Status: OK (200)``
 the first time and ``HTTP Status: Not Found (404)`` the subsequent times.
 
 A strict implementation of ``DELETE`` would expect ``HTTP Status: OK (200)``.
 I believe that approach to be unnecessary cumbersome and pragmatism should
 trump idempotency in such cases.
 
+Being pragmatic about ``PUT``'s idempotence is common, either by purpose or by
+neglect. In the next part we will dive deeper in to the ramifications of
+relying too much on idempotency of ``PUT`` in a concurrent setting.
 
 ## Concurrency vs Idempotency
 
 A typical semantic used to ensure idempotency for a ``PUT`` request is to
 require the client to send all the values, including the ones
-that does not change, when updating an object. This approach results in an
-``PUT`` that is idempotent but prone to race conditions, both in case of
+that does not change, when updating an object. This approach for ``PUT`` that is idempotent but prone to race conditions, both in case of
 network failure and in highly concurrent environments.
 
 Say ``Alice`` tries to update the ``secret`` to ``"A"`` and because the network
