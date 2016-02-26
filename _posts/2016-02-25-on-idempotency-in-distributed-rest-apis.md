@@ -125,8 +125,8 @@ and reliability, and should only be included if necessary.
 ## Closing Notes
 
 Remember that every API is different and has different requirements.
-There is no golden rule for API design and is a lot of trade-offs you have to make
-a long the way.
+There is no golden rule for API design and you will have to make
+lot of trade-offs a long the way.
 
-For further reading on API designs and principles I would highly recommended
+For further reading on API designs and principles I highly recommended
 [apigee's ebooks](http://apigee.com/about/resources/ebooks) and [3scales reports](http://www.3scale.net/resources/reports/).
