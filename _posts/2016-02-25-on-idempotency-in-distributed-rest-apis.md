@@ -114,8 +114,7 @@ it will be rejected,
 
 Now, let us reconsider the case with ``Alice`` and ``Bob``. Let us assume that
 ``Alice``s first request was persisted and that ``Bob`` has persisted his secret
-``"B"``. If Alice retries her request with ``version: 1`` from earlier, her request
-will fail since the version number ``1`` of her request is less ``2``.
+``"B"``. If Alice retries her request with ``version: 1`` from earlier it will fail. It fails since the version number ``1`` of her request is less ``2``.
 The only way for Alice to update the secret is to explicitly set the version
 number to ``3``. Solving the race condition problem illustrated earlier.
 
