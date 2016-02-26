@@ -85,7 +85,7 @@ Also, consider how such API semantics in a large distributed environment can
 cause a a lot of data loss and race conditions if not properly implemented.
 
 ### Avoiding race conditions
-One approach to avoid such race conditions we can implement the API with
+One approach to avoid such race conditions is to implement the API with
 [Optimistic Locking](http://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking)
 semantics. We can do that by introducing a version number, or other methods such
 as an hash or timestamps, to the data model. I prefer using version numbers because
