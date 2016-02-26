@@ -95,7 +95,7 @@ Assuming that we are using ``version`` numbers to implement Optimistic Locking.
 Each update of a resource must include a strictly monotonically increasing
 version number of the previous resources. That is if we have a resources
 
-```js
+```
 {
   secret: "A",
   version: 1
@@ -105,7 +105,7 @@ version number of the previous resources. That is if we have a resources
 then the update request for the resource at hand must include ``version: 2``, or
 it will be rejected,
 
-```js
+```
 {
   secret: "B",
   version: 2
