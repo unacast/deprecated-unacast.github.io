@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Idempotency in REST APIs and distributed systems"
+title: "Idempotency in REST APIs"
 ghavatar: 310118
 ghname: gronnbeck
 jobtitle: Platform Engineer
@@ -19,11 +19,11 @@ Idempotency is defined as: ([wikipedia](https://en.wikipedia.org/wiki/Idempotenc
 > science, that can be applied multiple times without changing the result beyond
 > the initial application.
 
-That is, a HTTP method is idempotent if it guarantees that repeating a
-request multiple of times has the same effect as issuing the request once.
-This is especially important in the case of network failures. In such cases
-clients can repeat the same request multiple times without worrying about
-any unintended effects.
+In the context of HTTP APIs, a HTTP method is idempotent if it guarantees that
+repeating a request multiple of times has the same effect as issuing
+the request once. This is especially important in the case of network failures. In
+such cases clients can repeat the same request multiple times without worrying
+about any unintended effects.
 
 ## Safe vs Idempotent
 [Idempotent methods](https://tools.ietf.org/html/rfc7231#section-4.2.2)
@@ -86,10 +86,8 @@ cause a a lot of data loss and race conditions if not properly implemented.
 ### Avoiding race conditions
 One approach to avoid such race conditions is to implement the API with
 [Optimistic Locking](http://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking)
-semantics. We can do that by introducing a version number, or other methods such
-as an hash or timestamps, to the data model. I prefer using version numbers because
-they are easy to understand and update. I believe timestamps to be a bad choice
- because [clocks are hard to keep synchronized](https://www.google.no/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwjog-O0q5PLAhUMIpoKHc9IC6YQFggnMAE&url=http%3A%2F%2Famturing.acm.org%2Fp558-lamport.pdf&usg=AFQjCNGDBbwvlZwKdG6k44j2O0gIOoEi9w).
+semantics. We can do that by introducing a version number or an hash, to the data model. I prefer using version numbers because
+they are easy to understand and update.
 
 Assuming that we are using ``version`` numbers to implement Optimistic Locking.
 Each update of a resource must include a strictly monotonically increasing
@@ -126,7 +124,7 @@ and reliability, and should only be included if necessary.
 
 Remember that every API is different and has different requirements.
 There is no golden rule for API design and you will have to make
-lot of trade-offs a long the way.
+lot of trade-offs along the way.
 
 For further reading on API designs and principles I highly recommended
 [apigee's ebooks](http://apigee.com/about/resources/ebooks) and [3scales reports](http://www.3scale.net/resources/reports/).
