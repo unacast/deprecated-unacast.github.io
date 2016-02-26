@@ -88,7 +88,8 @@ Also, consider how such API semantics in a large distributed environment can
 cause a a lot of data loss and race conditions if not properly implemented.
 
 ### Avoiding race conditions
-To avoid such race conditions we can implement the API with [Optimistic Locking](http://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking)
+One approach to avoid such race conditions we can implement the API with
+[Optimistic Locking](http://stackoverflow.com/questions/129329/optimistic-vs-pessimistic-locking)
 semantics. We can do that by introducing a version number, or other methods such
 as an hash or timestamps, to the data model. I prefer using version numbers because
 they are easy to understand and update. I think timestamps is just a bad choice
@@ -105,7 +106,8 @@ version number of the previous resources. That is if we have a resources
 }
 ```
 
-then an update for the resource at hand must include ``version: 2``, e.g.
+then an update for the resource at hand must include ``version: 2``, or
+it will be rejected,
 
 ```js
 {
@@ -113,8 +115,6 @@ then an update for the resource at hand must include ``version: 2``, e.g.
   version: 2
 }
 ```
-
-or it will be rejected.
 
 If no earlier version of an object exists. It is fair to assume that the version
 number is omitted.
@@ -131,8 +131,9 @@ and reliability, and should only be included if necessary.
 
 ## Closing Notes
 
-API design is not necessarily straight forward and it consist of a
-lot of trade-offs. So by understanding how to apply principles such as
-idempotency and optimistic locking can be of great help. However, I am a
-strong believer of creating user friendly APIs. In case of doubt, be pragmatic
-and always strive to make your users happy. 
+Remember that every API is different and has different requirements.
+There is no golden rule for API design and is a lot of trade-offs you have to make
+a long the way.
+
+For further reading on API designs and principles I would highly recommended
+[apigee's ebooks](http://apigee.com/about/resources/ebooks) and [3scales reports](http://www.3scale.net/resources/reports/).
