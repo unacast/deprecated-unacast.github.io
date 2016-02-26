@@ -49,7 +49,7 @@ popular HTTP methods used when implementing RESTful APIs,
 
 Being idempotent is important. However, it does not mean that you
 have to guarantee that a request one point in time should always return
-the same result. One examples of this is when we apply ``DELETE`` on
+the same result. One example of this is when we apply ``DELETE`` on
 an existing resource multiple times it should return ``HTTP Status: OK (200)``
 the first time and ``HTTP Status: Not Found (404)`` the subsequent times.
 
@@ -75,12 +75,12 @@ since the ``PUT`` is idempotent she can retry the request without worrying of
 causing other side effects.
 
 This line of thought is correct, if we assume that ``Alice`` was the only only one
-trying to update the secret. Let us assume that an another user Bob
+trying to update the secret. Let us assume that another user Bob
 was simultaneously trying to update the same ``secret`` as Alice to ``"B"``,
 and successfully did so in between ``Alice``'s two requests.  Then ``Alice``'s
 request will implicitly overwrite ``Bob``s ``secret`` and it will be lost forever.
 
-Even thought the example is fairly trivial example it illustrates pretty clear
+Even though the example is fairly trivial example it illustrates pretty clearly
 that idempotency does not ensure safe updates in a concurrent environment.
 Also, consider how such API semantics in a large distributed environment can
 cause a a lot of data loss and race conditions if not properly implemented.
