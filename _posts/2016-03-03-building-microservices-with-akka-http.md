@@ -24,6 +24,17 @@ This post will be an not be an introduction to microservices either, but it will
 look at how the basic building blocks in akka-http and scala that you can use to build a
 microservice that uses HTTP as the interface to other services. Which, in my opinion
 is a good choice of protocol, being implementation-agnostic and battle-proven.
+The general motivation for making microservices is starting to become well known, but
+for us, it boils down to a couple of things:
+
+* We can easily change, update and kill services that do a specific task
+* The interfaces between services are well defined and does not require knowledge
+of inner workings and implementations
+* As stated in the first line, it enables us to continually experiment with new stuff,
+have fun, learn things and always choose the best tools to achieve a specific task rather than
+to make boring tradeoffs.
+
+### Some background
 So, what makes a framework or language good for writing a microservice?
 I would argue light weight, speed and security features. By light weight I mean
 a light core lib that can be extended by adding additional libs that do a specific task well.
@@ -31,8 +42,6 @@ a light core lib that can be extended by adding additional libs that do a specif
 The language or framework also needs to have support calling other microservices in parallel and
 merge / compose the results and return it. In our case, akka-http is completely async and
 Scala Futures and Future composition is very powerful, yet simple to use and reason about.
-
-### Some background
 Akka-http is somewhat different than than existing web frameworks such as Django
 and ruby on rails where the main focus is on the request-response cycle.
 The goal of akka-http is essentially to connect akka to the web, so it is a really light weight
