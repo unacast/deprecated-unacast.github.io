@@ -13,7 +13,6 @@ tags: [rest, api, akka, akka-http, microservices]
   the fun part.
 </div>
 
-
 ###Motivation
 Learning new programming languages and frameworks is one of
 the most important things you can do as an engineer to stay updated and keep
