@@ -70,7 +70,7 @@ the ``LoginRequest``. Then, we let WIX do the validation.
 ### Show me the rest of the code
 To complete this example and for clarity's sake,
 let's look at the ``generateLoginToken`` method that provides a token upon a successful login (I apologize
-  to all scala savants for the possibly messy code, I am still a padawan in this language):
+  to all scala savants for the possibly messy code):
 <script src="https://gist.github.com/MartinSahlen/f13c2fceb3bf810cf376.js"></script>
 
 ### Creating your own directives
