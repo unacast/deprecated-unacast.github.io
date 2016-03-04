@@ -4,7 +4,7 @@ title: "Building microservices with Scala and akka-http"
 ghavatar: 4218596
 ghname: martinsahlen
 jobtitle: Lead API and Integration Engineer
-tags: [rest, api, akka, akka-http]
+tags: [rest, api, akka, akka-http, microservices]
 ---
 
 <div class="message">
