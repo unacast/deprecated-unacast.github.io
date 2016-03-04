@@ -91,7 +91,7 @@ User object that issued the request. Then, the user can be passed on to domain /
 logic methods to i.e. determine permissions if we want to do that.
 
 Essentially, we are now creating middleware, as most of you probably are familiar
-with from Django, Express.js and similar web framework - where the goal is either
+with from Django, Express.js and similar web frameworks - where the goal is either
 to reject a request before it reaches the domain methods or to augment the
 request context with i.e. information about the user that issues the request before calling
 domain methods. Let's look at the code:
