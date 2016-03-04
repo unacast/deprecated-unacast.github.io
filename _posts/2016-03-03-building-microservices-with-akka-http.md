@@ -30,8 +30,8 @@ I would argue light weight, speed and security features. By light weight I mean
 a light core lib that can be extended by adding additional libs that do a specific task well.
 
 The language or framework also needs to have support calling other microservices in parallel and
-merge / compose the results and return it. In our case, akka-http is completely async and  
-scala Futures and Future composition is very powerful, yet simple to use and reason about.
+merge / compose the results and return it. In our case, akka-http is completely async and
+Scala Futures and Future composition is very powerful, yet simple to use and reason about.
 
 ###Some background
 Akka-http is somewhat different than than existing web frameworks such as Django
@@ -43,7 +43,7 @@ In fact, my experience with akka-http started when we wanted to expose our batch
 
 ###Getting started
 I have always been a fan of just getting my hands dirty right away, rather than reading
-up forever. I also have good experience with having a clear scope and goal when Learning
+up forever. I also have good experience with having a clear scope and goal when learning
 new stuff. So let's create some code that can handle authenticating and authorizing incoming
 requests and call appropriate methods.
 
