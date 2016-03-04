@@ -13,7 +13,7 @@ tags: [rest, api, akka, akka-http, microservices]
   the fun part.
 </div>
 
-###Motivation
+### Motivation
 Learning new programming languages and frameworks is one of
 the most important things you can do as an engineer to stay updated and keep
 the fun. Recently, I have been looking at scala and akka, with special focus
@@ -32,7 +32,7 @@ The language or framework also needs to have support calling other microservices
 merge / compose the results and return it. In our case, akka-http is completely async and
 Scala Futures and Future composition is very powerful, yet simple to use and reason about.
 
-###Some background
+### Some background
 Akka-http is somewhat different than than existing web frameworks such as Django
 and ruby on rails where the main focus is on the request-response cycle.
 The goal of akka-http is essentially to connect akka to the web, so it is a really light weight
@@ -40,7 +40,7 @@ library that can co-exist with an an existing akka application.
 In fact, my experience with akka-http started when we wanted to expose our batch processing tool
 (written in akka) to the web in order to trigger jobs on demand.
 
-###Getting started
+### Getting started
 I have always been a fan of just getting my hands dirty right away, rather than reading
 up forever. I also have good experience with having a clear scope and goal when learning
 new stuff. So let's create some code that can handle authenticating and authorizing incoming
