@@ -30,7 +30,7 @@ I would argue light weight, speed and security features. By light weight I mean
 a light core lib that can be extended by adding additional libs that do a specific task well.
 
 The language or framework also needs to have support calling other microservices in parallel and
-merge / compose the results and return it. In our case, akka-http is completely async and  
+merge / compose the results and return it. In our case, akka-http is completely async and
 scala Futures and Future composition is very powerful, yet simple to use and reason about.
 
 ###Some background
