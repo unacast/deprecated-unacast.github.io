@@ -7,13 +7,8 @@ jobtitle: Platform Engineer
 tags: [rest, api, microservices, go]
 ---
 
-<div class="message">
-
 In this post we look into the concept of Synthetic Transactions, and how to
 get started with the implementation of a Synthetic Transaction tester.
-
-</div>
-
 
 At Unacast we are building software that scale to process millions of
 proximity interactions each day. We believe the best approach for building
@@ -25,7 +20,7 @@ rather than to make unnecessary or boring tradeoffs.
 
 I have lately been looking into Go and wanted to gain some experience
 with building software in it. So I used this opportunity to build a real
-system using Go. 
+system using Go.
 
 ### Monitoring Microservices
 
