@@ -25,7 +25,7 @@ rather than to make unnecessary or boring tradeoffs.
 
 I have lately been looking into Go and wanted to gain some experience
 with building software in it. So I used this opportunity to build a real
-system using Go. 
+system using Go.
 
 ### Monitoring Microservices
 
@@ -33,14 +33,14 @@ However, as you might already know, running and keeping track of multiple
 services is hard, and monitoring is therefore essential. Since most of our
 services run using Docker, we use Kubernetes to help us keep our services
 running if they crash unexpectedly, and we couple
-Kubernetes together with [DataDog](datadoghq) to help
+Kubernetes together with [DataDog](https://www.datadoghq.com/) to help
 us monitor all our software environments.
 
 Yet, when bugs, that does not crash a service, find their way into production
 Kubernetes' monitoring is of no use. With that in mind it is easy to see that
 we are in need of some other type of monitoring to see if our services are
 healthy. We decided on experimenting with a concept called
-[Synthetic Transactions](synthetic-transactions).
+[Synthetic Transactions](http://martinfowler.com/articles/microservice-testing/).
 
 ### Synthetic Transactions
 
@@ -61,7 +61,7 @@ trouble if the Interactions API starts failing silently.
 ### Building synthetic transaction tester
 
 Usually we buy such services and there are a lot of great tools out there,
-such as [NewRelic Synthetics](nr-synthetics) and [Pingdom](pingdom).
+such as [NewRelic Synthetics](http://newrelic.com/synthetics) and [Pingdom](https://www.pingdom.com/).
 But since the ``synthetic transactions`` has to know the inner workings
 of our infrastructure we decided to try to build it our self.
 
@@ -92,7 +92,7 @@ In the event where a synthetic transaction fails we use DataDog,
 integrated with Slack and PagerDuty, to notify us that something fishy is going on.
 Specifically, we send Events to DataDog using their API from the synthetic
 transaction tester. We did this using an unofficial DataDog Go library by
-[zorkian](zorkian) and it looked something like this:
+[zorkian](https://github.com/zorkian/go-datadog-api) and it looked something like this:
 
 <script src="https://gist.github.com/gronnbeck/236e8f68d2b0d13ad3ce.js"></script>
 
@@ -103,7 +103,7 @@ middle of the night because the development or staging environment is
 not working as optimal.
 
 Finally, we need to be able to schedule these request. For that we used
-[cron for go](go-cron). Putting all the parts together we got something
+[cron for go](https://godoc.org/github.com/robfig/cron). Putting all the parts together we got something
 that looked like the following code snippet.
 
 <script src="https://gist.github.com/gronnbeck/601f353875f89334b52a.js"></script>
@@ -128,8 +128,8 @@ indicating a more critical issue that requires further investigation.
 
 In the future it will be natural to extend the synthetic transaction service by verifying
 that data has been processed. In our case, interactions are processed and safely
-persisted when they reach one of our [BigQuery](gle-bigquery) tables after passing
-through [AppEngine](gle-appengine), [Pub/Sub](gle-pubsub) and Dataflow.
+persisted when they reach one of our [BigQuery](https://cloud.google.com/bigquery/) tables after passing
+through [AppEngine](https://cloud.google.com/appengine/), [Pub/Sub](https://cloud.google.com/pubsub/) and [Dataflow](https://cloud.google.com/dataflow/).
 It is therefore natural for us to extend the synthetic transactions monitorer
 to check and verify that the transactions has been persisted as expected.
 
@@ -140,7 +140,7 @@ works efficiently. Also, we can use the same numbers to verify if the system
 delivers as promised according to the SLA.
 
 Finally, an extension  could be to support live
-[consumer-driven contract testing](cdc-testing). That is, explicitly check and verify that
+[consumer-driven contract testing](https://www.thoughtworks.com/radar/techniques/consumer-driven-contract-testing). That is, explicitly check and verify that
 the response payload was correct. By doing so we can go to bed at night without
 worrying if we have broken the API for any of its consumers.  
 
@@ -152,7 +152,7 @@ lot more to come. Also, check out some of the posts about microservices
  written by my awesome colleges:
 
 * [Building microservices with Scala and akka-http](http://labs.unacast.com/2016/03/03/building-microservices-with-akka-http/)
-* [Three lessons from running Kubernetes in production](unacast-k8s-lessons)
+* [Three lessons from running Kubernetes in production](http://labs.unacast.com/2016/01/27/three-lessons-from-running-k8s-in-production/)
 
 [synthetic-transactions]:http://martinfowler.com/articles/microservice-testing/
 [datadoghq]:https://www.datadoghq.com/
