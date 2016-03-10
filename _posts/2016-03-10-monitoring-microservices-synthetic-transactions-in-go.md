@@ -15,11 +15,17 @@ get started with the implementation of a Synthetic Transaction tester.
 </div>
 
 
-At Unacast we are building software that must scale to
-process millions of proximity interactions each day. We believe the best approach for building
+At Unacast we are building software that scale to process millions of
+proximity interactions each day. We believe the best approach for building
 scalable and agile systems is microservices. Meaning, we believe in small,
-smart and focused applications over large ones.
+smart and focused applications over large ones. It also
+enables us to continuously experiment with new stuff, have fun,
+learn things and always choose the best tools to achieve a specific task
+rather than to make unnecessary or boring tradeoffs.
 
+I have lately been looking into Go and wanted to gain some experience
+with building software in it. So I used this opportunity to build a real
+system using Go. 
 
 ### Monitoring Microservices
 
