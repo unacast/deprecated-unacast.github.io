@@ -46,17 +46,17 @@ healthy. We decided on experimenting with a concept called
 
 Synthetic Transactions is a monitored transaction that is performed on a
 system running live in production. Such transactions are used to monitor
-the system at hand performs as expected.
+that the system at hand performs as expected.
 
 In the world of e-commerce a synthetic transaction can be a transaction that
 continuously tries to place an order and monitors if that order succeeded or not.
-If it not succeeds it is an indicator that something is wrong and should get
+If it does not succeed, it is an indicator that something is wrong and should get
 someone’s attention immediately.
 
 At Unacast we use synthetic transactions to monitor our Interactions API.
 The single purpose of the Interactions API is to accept and ingest interactions
-for further processing. Since we are a data-oriented startup, we are in big
-trouble if the interactions API starts failing silently.
+for further processing. Since we are a data-oriented company, we are in big
+trouble if the Interactions API starts failing silently.
 
 ### Building synthetic transaction tester
 
@@ -108,7 +108,7 @@ that looked like the following code snippet.
 
 <script src="https://gist.github.com/gronnbeck/601f353875f89334b52a.js"></script>
 
-Disclaimer: The code above is just an  a simplification of how it can be implemented, and does not show the complete implementation that we are running on kubernetes..
+Disclaimer: The code above is just an  a simplification of how it can be implemented, and does not show a complete implementation.
 
 #### Monitoring the synthetics transaction tester
 
