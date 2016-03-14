@@ -38,6 +38,8 @@
         </p><!-- /.entry-reading-time -->
         {% endif %}
       </div><!-- /.header-title-wrap -->
+      <img alt="@{{page.ghname}}" class="author-avatar" src="https://avatars0.githubusercontent.com/u/{{page.ghavatar}}?v=3&am">
+      <a href="https://github.com/{{page.ghname}}">{{page.ghname}}</a>, {{page.jobtitle}}
     </header>
     <div class="entry-content">
       {{ content }}
@@ -59,7 +61,7 @@
   </footer>
 </div><!-- /.footer-wrapper -->
 
-{% include scripts.html %}	        
+{% include scripts.html %}
 
 </body>
 </html>
