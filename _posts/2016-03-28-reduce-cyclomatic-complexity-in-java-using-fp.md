@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Reduce Cyclomatic Complexity with functional programming tricks"
+title: "Battling Cyclomatic Complexity in Java using Javaslang"
 ghavatar: 4453
 ghname: torbjornvatn
 name: Torbjørn Vatn
