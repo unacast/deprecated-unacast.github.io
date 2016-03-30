@@ -29,7 +29,7 @@ It's not obvious what the result will be in any given situation, at least not to
 
 I started to think about how I would have solved this particular problem in Scala and I recalled that a former
 colleague of mine had given me a tip about a functional library for Java called [Javaslang](http://www.javaslang.io/).
-I desided to see if I could solve this problem in a Scala'ish style using that library.
+I decided to see if I could solve this problem in a Scala'ish style using that library.
 
 My first attempt looked like this:
 
