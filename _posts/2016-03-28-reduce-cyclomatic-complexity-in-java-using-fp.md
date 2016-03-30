@@ -24,7 +24,7 @@ Lets look at an example that I encountered recently (the code has been somewhat 
 
 <script src="https://gist.github.com/torbjornvatn/99325d5985ac0c43f3e8.js?file=the_old_ways.java"></script>
 
-As we can see the nesting goes deep, and there are seveal places where the code can "escape" via a return.
+As we can see the nesting goes deep, and there are several places where the code can "escape" via a return.
 It's not obvious what the result will be in any given situation, at least not to me.
 
 I started to think about how I would have solved this particular problem in Scala and I recalled that a former
