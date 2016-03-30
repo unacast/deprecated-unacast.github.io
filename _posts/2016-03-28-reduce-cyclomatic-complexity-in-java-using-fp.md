@@ -14,9 +14,10 @@ tags: [java, scala, javaslang]
 
 The last couple of weeks I've been doing some java programming for the first time in 5 years, and something
 that my Scala tuned brain has had a hard time readjust to, is **nested if statements with returns in them**. 
-If you use `java.util.Optional` to avoid dealing with `nulls` you could end up with just as many `ifs` as you would using 
-traditional `!= null` style.
 
+Traditionally Java code has quite a lot of `if (someValue != null)` checks to avoid the dreaded `NullPointerException`.
+In Java 8 `java.util.Optional` was introduced to mitigate some of this, but if you use a combination of `if (someOptional.isPresent())` and `someOptional.get()` 
+you could end up with just as many nested `ifs` as you would using traditional `_ != null` style. 
 In my view this way of doing control flow is quite hard to follow and leads to high 
 [Cyclomatic Complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity).
 
