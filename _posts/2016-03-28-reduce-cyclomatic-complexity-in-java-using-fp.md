@@ -42,7 +42,7 @@ from one quite compact return statement at the end. However I thought it had som
 - The `map()` on line `11` actually discards it's argument and performs a side effect using the `user` argument from the encapsualting
 function instead.
 
-This code could also have been accompished using the methods available on `java.util.Optional`, so there wheren't really any good
+This code could also have been accomplished using the methods available on `java.util.Optional`, so there wheren't really any good
 reason to introduce Javaslang just to do it this way. Javaslang had another trick up it's sleeve however, one that it has 
 borrowed from languages like Scala and Haskell, namely [Pattern matching](https://en.wikipedia.org/wiki/Pattern_matching).
 
