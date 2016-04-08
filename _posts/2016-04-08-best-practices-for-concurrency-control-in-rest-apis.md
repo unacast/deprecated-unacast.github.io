@@ -16,6 +16,8 @@ When designing REST API interfaces, the methods that modifies existing resources
 
 To ease the flow of the examples that follow we will begin with establishing the interested parties when working with a REST API. The three interested parties we will keep focus on are the *api-creator*, the *integrator* and the end-user. The api-creator are the ones building and designing the API, in some cases this might be "the backend team", for more public facing APIs it might be the core business unit. The integrators are the consumers of the API, they could be another unit in your organization like the frontend team, a business partner or a lone developer using your API in a hobby project. End-users could be anything from your mobile app users to your partner's users, in fact one end-user could be the user of several of your integrators. Yet, common for end-users is that they are likely oblivous to the fact that the API the *api-creator* provides exists &mdash; and does not want to know a thing about it.
 
+The intended type of concurrency conflict for this post is when a user tries to update a resource which has been modified after the last time this user last saw that resource. The consequence of which is that the user writes over someone else's change to resource, unknowingly.
+
  As the nature of design challenges are discussions with no definite answers and a myriad of different solutions around &mdash; any feedback or correction are most welcome.
 
 ## Last request wins
@@ -26,7 +28,7 @@ There are in fact several upsides to implementing such a simple strategy &mdash;
 
 Absolutely there are good reasons to use a stricter concurrency control strategy. Most markedly is loss of data. In a last request wins scheme, data from the second last request can be lost. Secondly, having a stricter scheme forces your *integrators* to think about concurrency control. When omitting a strategy as with last request wins it is more likely that issues with concurrency are not considered. Both of these issues are however approachable by other means than a stricter concurrency control scheme. For instance by implementing versioning of resources, data will never be truly be lost &mdash; conflicts can therefore be mended, by manual intervention that is.
 
-Not only is the last request wins approach desirable for the *api creator* as it entails no work at all beyond clearly communicating it through the API documentation. It is also the simplest possible model for the *integrator*. As a matter of fact even the end-user interfaces would be simpler and more clean.
+Not only is the last request wins approach desirable for the *api creator* as it entails no work at all beyond clearly communicating it through the API documentation. It is also the simplest possible model for the *integrator*. As a matter of fact even the end-user's interfaces would be simpler and more clean.
 
 ## Optimistic locking
 
@@ -47,7 +49,7 @@ An opt-in approach like Spotify's clearly reminds your *integrators* to think ab
 
 ## Minimize consequences
 
-Reducing the possible consequences of concurrency conflicts is desirable from a API design standpoint. In practice this mean only changing the data very fields that needs to be changed. This can be achieved with either more granular endpoints for altering different properties or using [PATCH semantics instead of PUT](http://restful-api-design.readthedocs.org/en/latest/methods.html#patch-vs-put). The endgame here is to in a conflict the last request only writes the field it actually intends to modify.
+Reducing the possible consequences of concurrency conflicts is desirable from a API design standpoint. In practice this mean only modifying the fields which the end-user intends to modify. This can be achieved with either more granular endpoints for altering different properties or using [PATCH semantics instead of PUT](http://restful-api-design.readthedocs.org/en/latest/methods.html#patch-vs-put). The endgame here is to in a conflict only let the last request write the field(s) it actually intends to modify.
 
 On another note, if modifying existing resources can be avoided and you have immutable resources &mdash; you have in all practicality removed concurrency conflicts from your API.
 
