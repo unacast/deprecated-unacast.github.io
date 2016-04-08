@@ -14,7 +14,7 @@ When designing REST API interfaces, the methods that modifies existing resources
   TL;DR. Keep the end-to-end flow in mind, minimize change sets and do as little concurrency control as your problem requires.
 </div>
 
-To ease the flow of the examples that follow we will begin with establishing the interested parties when working with a REST API. The three interested parties we will keep focus on are the *api-creator*, the *integrator* and the end-user. The api-creator are the ones building and designing the API, in some cases this might be "the backend team", for more public facing APIs it might be the core business unit. The integrators are the consumers of the API, they could be another unit in your organization like the frontend team, a business partner or a lone developer using your API in a hobby project. End-users could be anything from your mobile app users to your partner's users, in fact one end-user could be the user of several of your integrators. Yet, common for end-users is that they are likely oblivous to the fact that the API the *api-creator* provides exists &mdash; and does not want to know a thing about it.
+To ease the flow of the examples that follow we will begin with establishing the interested parties when working with a REST API. The three interested parties we will keep focus on are the *api-creator*, the *integrator* and the *end-user*. The api-creator are the ones building and designing the API, in some cases this might be "the backend team", for more public facing APIs it might be the core business unit. The integrators are the consumers of the API, they could be another unit in your organization like the frontend team, a business partner or a lone developer using your API in a hobby project. End-users could be anything from your mobile app users to your partner's users, in fact one *end-user* could be the user of several of your integrators. Yet, common for *end-users* is that they are likely oblivous to the fact that the API the *api-creator* provides exists &mdash; and does not want to know a thing about it.
 
 The intended type of concurrency conflict for this post is when a user tries to update a resource which has been modified after the last time this user last saw that resource. The consequence of which is that the user writes over someone else's change to resource, unknowingly.
 
@@ -24,11 +24,11 @@ The intended type of concurrency conflict for this post is when a user tries to 
 
 Skip concurrency control altogether. What does not doing concurrency control in a REST API lead to? It lets the last request win.
 
-There are in fact several upsides to implementing such a simple strategy &mdash; or the lack of implementing any. First of all, it is a really clean interface for your *integrators*, no extraneous HTTP headers or semantics to comprehend. Stronger, is however the risk of the end-user suffering because of a stricter concurrency control strategy. A stricter concurrency control strategy requires that the entire end-to-end flow adhere to it. The *integrator* would be forced to implement graceful resolving of conflicts due to the concurrency control &mdash; likely a non-trivial task, definitely so if a GUI is involved.
+There are in fact several upsides to implementing such a simple strategy &mdash; or the lack of implementing any. First of all, it is a really clean interface for your *integrators*, no extraneous HTTP headers or semantics to comprehend. Stronger, is however the risk of the *end-user* suffering because of a stricter concurrency control strategy. A stricter concurrency control strategy requires that the entire end-to-end flow adhere to it. The *integrator* would be forced to implement graceful resolving of conflicts due to the concurrency control &mdash; likely a non-trivial task, definitely so if a GUI is involved.
 
 Absolutely there are good reasons to use a stricter concurrency control strategy. Most markedly is loss of data. In a last request wins scheme, data from the second last request can be lost. Secondly, having a stricter scheme forces your *integrators* to think about concurrency control. When omitting a strategy as with last request wins it is more likely that issues with concurrency are not considered. Both of these issues are however approachable by other means than a stricter concurrency control scheme. For instance by implementing versioning of resources, data will never be truly be lost &mdash; conflicts can therefore be mended, by manual intervention that is.
 
-Not only is the last request wins approach desirable for the *api creator* as it entails no work at all beyond clearly communicating it through the API documentation. It is also the simplest possible model for the *integrator*. As a matter of fact even the end-user's interfaces would be simpler and more clean.
+Not only is the last request wins approach desirable for the *api creator* as it entails no work at all beyond clearly communicating it through the API documentation. It is also the simplest possible model for the *integrator*. As a matter of fact even the *end-user*'s interfaces would be simpler and more clean.
 
 ## Optimistic locking
 
@@ -38,18 +38,18 @@ The general approach for optimistic locking is to along with your payload send a
 
 Identifying the version in a HTTP request one can either put the version identificator as part of the request model in the payload or utilize the `if-match` request-header from the [HTTP/1.1 specification](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24). Note that the HTTP/1.1 specification requires 412 (Precondition failed) to be returned upon conflict.
 
-As a mechinism of concurrency control optimistic locking is a simple yet powerful approach. Implementing it for the *api-creator* is relatively straightforward. It does however impose a great deal of complexity to your *integrators* in terms of gracefully handling conflicts, making end-users the likely victim of this strategy.
+As a mechinism of concurrency control optimistic locking is a simple yet powerful approach. Implementing it for the *api-creator* is relatively straightforward. It does however impose a great deal of complexity to your *integrators* in terms of gracefully handling conflicts, making *end-users* the likely victim of this strategy.
 
 ## Opt-in concurrency control
 
 By qualitatively analyzing some well known public APIs like [Github](https://developer.github.com/v3/), [Spotify](https://developer.spotify.com/web-api/) and [etcd](https://coreos.com/etcd/docs/latest/api.html#changing-the-value-of-a-key) we see everything from strict concurrency control to none at all (the last request wins strategy). The most common solution nonetheless seem to be opt-in concurrency control, as in [Spotify's case](https://developer.spotify.com/web-api/reorder-playlists-tracks/) where you can pass an optional `snapshot_id` on your update request.
 
-An opt-in approach like Spotify's clearly reminds your *integrators* to think about concurrency control and make up their minds whether it makes sense for their end-users. This strategy does however not promise anything more than no concurrency control at all, as different *intergrators* might ruin for each other.
+An opt-in approach like Spotify's clearly reminds your *integrators* to think about concurrency control and make up their minds whether it makes sense for their *end-users*. This strategy does however not promise anything more than no concurrency control at all, as different *intergrators* might ruin for each other.
 
 
 ## Minimize consequences
 
-Reducing the possible consequences of concurrency conflicts is desirable from a API design standpoint. In practice this mean only modifying the fields which the end-user intends to modify. This can be achieved with either more granular endpoints for altering different properties or using [PATCH semantics instead of PUT](http://restful-api-design.readthedocs.org/en/latest/methods.html#patch-vs-put). The endgame here is to in a conflict only let the last request write the field(s) it actually intends to modify.
+Reducing the possible consequences of concurrency conflicts is desirable from a API design standpoint. In practice this mean only modifying the fields which the *end-user* intends to modify. This can be achieved with either more granular endpoints for altering different properties or using [PATCH semantics instead of PUT](http://restful-api-design.readthedocs.org/en/latest/methods.html#patch-vs-put). The endgame here is to in a conflict only let the last request write the field(s) it actually intends to modify.
 
 On another note, if modifying existing resources can be avoided and you have immutable resources &mdash; you have in all practicality removed concurrency conflicts from your API.
 
