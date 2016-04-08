@@ -34,7 +34,7 @@ The intended type of concurrency conflict for this post is when a user tries to 
 
  Identifying the version in a HTTP request one can either put the version identificator as part of the request model in the payload or utilize the `if-match` request-header from the [HTTP/1.1 specification](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24). Note that the HTTP/1.1 specification requires 412 (Precondition failed) to be returned upon conflict.
 
- As a mechinism of concurrency control optimistic locking is a simple yet powerful approach. Implementing it for the *api-creator* is relatively straightforward. This approach does however impose the risk of *end-user's* suffering. A stricter concurrency control strategy requires that the entire end-to-end flow adhere to it. The *integrator* would be forced to implement graceful resolving of conflicts due to the concurrency control &mdash; likely a non-trivial task, definitely so if a GUI is involved.
+ As a mechanism of concurrency control optimistic locking is a simple yet powerful approach. Implementing it for the *api-creator* is relatively straightforward. This approach does however impose the risk of *end-user's* suffering. A stricter concurrency control strategy requires that the entire end-to-end flow adhere to it. The *integrator* would be forced to implement graceful resolving of conflicts due to the concurrency control &mdash; likely a non-trivial task, definitely so if a GUI is involved.
 
 ## Last request wins
 
