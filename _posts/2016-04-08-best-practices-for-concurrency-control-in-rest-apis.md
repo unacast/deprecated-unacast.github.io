@@ -20,38 +20,39 @@ The intended type of concurrency conflict for this post is when a user tries to 
 
  As the nature of design challenges are discussions with no definite answers and a myriad of different solutions around &mdash; any feedback or correction are most welcome.
 
+## Minimize consequences
+
+ Reducing the possible consequences of concurrency conflicts is desirable from a API design standpoint. In practice this mean only modifying the fields which the *end-user* intends to modify. This can be achieved with either more granular endpoints for altering different properties or using [PATCH semantics instead of PUT](http://restful-api-design.readthedocs.org/en/latest/methods.html#patch-vs-put). The endgame here is to in a conflict only let the last request write the field(s) it actually intends to modify.
+
+ On another note, if modifying existing resources can be avoided so that you can have immutable resources &mdash; you have in all practicality removed concurrency conflicts from your API.
+
+## Optimistic locking
+
+ If you choose to implement a concurrency control strategy, optimistic locking is likely to be the best bet. Optimistic locking works like the following: try to do an operation, then fail if the resource has changed since last seen. Optimistic locking is opposed to pessimistic locking where a resource is locked from alteration before any changes are done, then released. As pessimistic locking schemes require state to be kept at the server it does not play well in RESTful APIs where it is [idiomatic to keep the server stateless](https://en.wikipedia.org/wiki/Representational_state_transfer#Stateless).
+
+ The general approach for optimistic locking is to along with your payload send a value that identifies which version of the resource you are modifying. If the version to modify from is stale, the request should fail. The version identifier could be a explicit version number or hash of the unmodified resource. Last modified timestamps could also be used, but with caution as clocks might be skewed in a distributed environment.
+
+ Identifying the version in a HTTP request one can either put the version identificator as part of the request model in the payload or utilize the `if-match` request-header from the [HTTP/1.1 specification](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24). Note that the HTTP/1.1 specification requires 412 (Precondition failed) to be returned upon conflict.
+
+ As a mechinism of concurrency control optimistic locking is a simple yet powerful approach. Implementing it for the *api-creator* is relatively straightforward. This approach does however impose the risk of *end-user's* suffering. A stricter concurrency control strategy requires that the entire end-to-end flow adhere to it. The *integrator* would be forced to implement graceful resolving of conflicts due to the concurrency control &mdash; likely a non-trivial task, definitely so if a GUI is involved.
+
 ## Last request wins
 
 Skip concurrency control altogether. What does not doing concurrency control in a REST API lead to? It lets the last request win.
 
-There are in fact several upsides to implementing such a simple strategy &mdash; or the lack of implementing any. First of all, it is a really clean interface for your *integrators*, no extraneous HTTP headers or semantics to comprehend. Stronger, is however the risk of the *end-user* suffering because of a stricter concurrency control strategy. A stricter concurrency control strategy requires that the entire end-to-end flow adhere to it. The *integrator* would be forced to implement graceful resolving of conflicts due to the concurrency control &mdash; likely a non-trivial task, definitely so if a GUI is involved.
+There are in fact several upsides to implementing such a simple strategy &mdash; or the lack of implementing any. First of all, it is a really clean interface for your *integrators*, no extraneous HTTP headers or semantics to comprehend. Stronger, is it is a cleaner interface for the *end-user* as no clutter is added to the interface for handling concurrency conflicts.
 
 Absolutely there are good reasons to use a stricter concurrency control strategy. Most markedly is loss of data. In a last request wins scheme, data from the second last request can be lost. Secondly, having a stricter scheme forces your *integrators* to think about concurrency control. When omitting a strategy as with last request wins it is more likely that issues with concurrency are not considered. Both of these issues are however approachable by other means than a stricter concurrency control scheme. For instance by implementing versioning of resources, data will never be truly be lost &mdash; conflicts can therefore be mended, by manual intervention that is.
 
 Not only is the last request wins approach desirable for the *api creator* as it entails no work at all beyond clearly communicating it through the API documentation. It is also the simplest possible model for the *integrator*. As a matter of fact even the *end-user*'s interfaces would be simpler and more clean.
 
-## Optimistic locking
-
-If you choose to implement a concurrency control strategy, optimistic locking is likely to be the best bet. Optimistic locking works like the following: try to do an operation, then fail if the resource has changed since last seen. Optimistic locking is opposed to pessimistic locking where a resource is locked from alteration before any changes are done, then released. As pessimistic locking schemes require state to be kept at the server it does not play well in RESTful APIs where it is [idiomatic to keep the server stateless](https://en.wikipedia.org/wiki/Representational_state_transfer#Stateless).
-
-The general approach for optimistic locking is to along with your payload send a value that identifies which version of the resource you are modifying. If the version to modify from is stale, the request should fail. The version identifier could be a explicit version number or hash of the unmodified resource. Last modified timestamps could also be used, but with caution as clocks might be skewed in a distributed environment.
-
-Identifying the version in a HTTP request one can either put the version identificator as part of the request model in the payload or utilize the `if-match` request-header from the [HTTP/1.1 specification](https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.24). Note that the HTTP/1.1 specification requires 412 (Precondition failed) to be returned upon conflict.
-
-As a mechinism of concurrency control optimistic locking is a simple yet powerful approach. Implementing it for the *api-creator* is relatively straightforward. It does however impose a great deal of complexity to your *integrators* in terms of gracefully handling conflicts, making *end-users* the likely victim of this strategy.
-
 ## Opt-in concurrency control
 
 By qualitatively analyzing some well known public APIs like [Github](https://developer.github.com/v3/), [Spotify](https://developer.spotify.com/web-api/) and [etcd](https://coreos.com/etcd/docs/latest/api.html#changing-the-value-of-a-key) we see everything from strict concurrency control to none at all (the last request wins strategy). The most common solution nonetheless seem to be opt-in concurrency control, as in [Spotify's case](https://developer.spotify.com/web-api/reorder-playlists-tracks/) where you can pass an optional `snapshot_id` on your update request.
 
-An opt-in approach like Spotify's clearly reminds your *integrators* to think about concurrency control and make up their minds whether it makes sense for their *end-users*. This strategy does however not promise anything more than no concurrency control at all, as different *intergrators* might ruin for each other.
+An opt-in approach like Spotify's clearly reminds your *integrators* to think about concurrency control and make up their minds whether it makes sense for their *end-users*.
 
-
-## Minimize consequences
-
-Reducing the possible consequences of concurrency conflicts is desirable from a API design standpoint. In practice this mean only modifying the fields which the *end-user* intends to modify. This can be achieved with either more granular endpoints for altering different properties or using [PATCH semantics instead of PUT](http://restful-api-design.readthedocs.org/en/latest/methods.html#patch-vs-put). The endgame here is to in a conflict only let the last request write the field(s) it actually intends to modify.
-
-On another note, if modifying existing resources can be avoided and you have immutable resources &mdash; you have in all practicality removed concurrency conflicts from your API.
+On the contrary this is not a sound strategy if different the same resource can be modified from more than one *integrator*.An *end-user* might then overwrite changes made via a opted-in integration from a opted-out integration.
 
 ## Know your requirements
 
