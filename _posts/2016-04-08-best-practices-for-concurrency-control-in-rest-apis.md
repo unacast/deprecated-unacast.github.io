@@ -52,7 +52,7 @@ By qualitatively analyzing some well known public APIs like [Github](https://dev
 
 An opt-in approach like Spotify's clearly reminds your *integrators* to think about concurrency control and make up their minds whether it makes sense for their *end-users*.
 
-On the contrary this is not a sound strategy if different the same resource can be modified from more than one *integrator*.An *end-user* might then overwrite changes made via a opted-in integration from a opted-out integration.
+On the contrary this is not a sound strategy if the same resource can be modified from more than one *integrator*. An *end-user* might then overwrite changes made via a opted-in integration from a opted-out integration.
 
 ## Know your requirements
 
