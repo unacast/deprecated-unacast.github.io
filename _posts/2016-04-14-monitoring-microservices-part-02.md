@@ -20,13 +20,13 @@ After tinkering a bit we landed on the following data structures and code to run
 
 <script src="https://gist.github.com/gronnbeck/bb3dcb6bfc3edd53e308a3c3e4ca67b7.js"></script>
 
-<script src="https://gist.github.com/gronnbeck/742b2e082e3c8fa6562e85e6a85506df.js"></script>
+<script src="https://gist.github.com/gronnbeck/a3f0b97b13cc8589fa3cbe3505156a8c.js"></script>
 
 Notice that ``Schedule`` does not handle the events outputted by ``job.Run()``. We have omitted this due to readability.  ``leftContains`` which checks if the map on left-side are fully contained in the map on the right side, also omitted because it was very complex and way too embarrassing to open source as it is right now.
 
 The following example uses the the structure defined above to specify a test job using Go code.
 
-<script src="https://gist.github.com/gronnbeck/a3f0b97b13cc8589fa3cbe3505156a8c.js"></script>
+<script src="https://gist.github.com/gronnbeck/742b2e082e3c8fa6562e85e6a85506df.js"></script>
 
 Which is quite much better than to imperatively specify each test. However, you are still writing Go code. And in case you did not remember, our goal is to be able to specify jobs using YAML. Wouldn’t it be great if we could specify something like this instead:
 
@@ -40,7 +40,7 @@ A big drawback with the YAML approach is that we cannot specify different URLs o
 
 And then we parse and replace envvars using the following code
 
-<script src="https://gist.github.com/gronnbeck/0003b16f49a781f0b2dad9b67d1f240a.js"></script>
+<script src="https://gist.github.com/gronnbeck/0bcdf3c070191bcb13c49d9182a238b5.js"></script>
 
 In other words, we solved the problem by reading envvars from the YAML file and then string replacing the variables with the correct values.
 
