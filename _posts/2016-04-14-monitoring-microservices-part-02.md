@@ -6,12 +6,12 @@ ghname: gronnbeck
 jobtitle: Platform Engineer
 tags: [rest, api, microservices, go]
 ---
-In this post we will extend synthetic, a synthetic transaction tester, I wrote about in late February. The previous post can be found [here](). This post will be about a few different pains we have had with synthetic, and how we solved those problems. Specifically, we will look into two things.
+In this post we will extend synthetic, a synthetic transaction tester, I wrote about in late February. The previous post can be found [here](). This post will focus on some pain points we have had with synthetic, and how we solved those problems. Specifically, we will look into two things.
 
 1. How can we specify synthetic tests more declaratively using YAML
 2. Automate setup of Datadog Monitors
 
-I will go through these in order and provide Go code where it is suitable. Bear in mind that the code has been added for illustrative purposes, and might be out of context. I hope that is OK. And I’m no Go expert so the code provided might not be perfect, but I appreciate any feedback.
+I will go through these in order and provide Go code where it is suitable. Bear in mind that the code has been added for illustrative purposes, and might be out of context. I hope that is OK. And I’m still learning Go so the code provided might not be perfect, I appreciate any feedback.
 
 ## Declarative Synthetic Test Spec
 In the previous [post]() every test had to be written in Go code. At the time of writing that made sense since we only had two running synthetic tests. As we started to add more tests to synthetic a test pattern emerged. Most of our tests performed multiple HTTP request and checked each request returned the expected response. Mostly checking if the status code was correct and that the JSON body contained certain elements. With that in mind we set out to create a declarative way of specifying such tests.
@@ -57,4 +57,4 @@ Setting up a [Datadog]() Monitor for every environment for every test manually w
 ## Closing thoughts
 In this post we looked into how we simplified the process of writing test jobs in synthetic by introducing YAML specifications and automate DataDog monitor setup. Yet, there are a lot of improvements to be done. I have lately been playing around with other hosted services for synthetic transactions. And there is a lot of inspiration to be drawn from these services.
 
-Also, I when we are ready we will be extracting synthetic from our code base and open source it.
+Also, when we are ready we will be extracting synthetic from our code base and open source it.
