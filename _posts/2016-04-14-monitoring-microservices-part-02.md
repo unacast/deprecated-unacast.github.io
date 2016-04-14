@@ -6,7 +6,7 @@ ghname: gronnbeck
 jobtitle: Platform Engineer
 tags: [rest, api, microservices, go]
 ---
-In this post we will extend synthetic, a synthetic transaction tester, I wrote about in late February. The previous post can be found [here](). This post will focus on some pain points we have had with synthetic, and how we solved those problems. Specifically, we will look into two things.
+In this post we will extend synthetic, a synthetic transaction tester, I wrote about in late February. The previous post can be found [here](http://labs.unacast.com/2016/03/10/monitoring-microservices-synthetic-transactions-in-go/). This post will focus on some pain points we have had with synthetic, and how we solved those problems. Specifically, we will look into two things.
 
 1. How can we specify synthetic tests more declaratively using YAML
 2. Automate setup of Datadog Monitors
@@ -14,7 +14,7 @@ In this post we will extend synthetic, a synthetic transaction tester, I wrote a
 I will go through these in order and provide Go code where it is suitable. Bear in mind that the code has been added for illustrative purposes, and might be out of context. I hope that is OK. And I’m still learning Go so the code provided might not be perfect, I appreciate any feedback.
 
 ## Declarative Synthetic Test Spec
-In the previous [post]() every test had to be written in Go code. At the time of writing that made sense since we only had two running synthetic tests. As we started to add more tests to synthetic a test pattern emerged. Most of our tests performed multiple HTTP request and checked each request returned the expected response. Mostly checking if the status code was correct and that the JSON body contained certain elements. With that in mind we set out to create a declarative way of specifying such tests.
+In the previous [post](http://labs.unacast.com/2016/03/10/monitoring-microservices-synthetic-transactions-in-go/) every test had to be written in Go code. At the time of writing that made sense since we only had two running synthetic tests. As we started to add more tests to synthetic a test pattern emerged. Most of our tests performed multiple HTTP request and checked each request returned the expected response. Mostly checking if the status code was correct and that the JSON body contained certain elements. With that in mind we set out to create a declarative way of specifying such tests.
 
 After tinkering a bit we landed on the following data structures and code to run the job specified.
 
@@ -48,7 +48,7 @@ Putting everything together we are now able to specify a test using YAML and run
 
 ## Automate Datadog Monitor Setup
 
-Setting up a [Datadog]() Monitor for every environment for every test manually was tedious and caused a lot of errors. Even for three tests it was a crap. It is fair to say that it did not scale. So we decided to automate it! And luckily for us, both DataDog and the [DataDog third-party library]() we are using supports creating and updating Monitors using DataDogs API. The process is quite straight forward and is illustrated below
+Setting up a [Datadog](https://www.datadoghq.com/) Monitor for every environment for every test manually was tedious and caused a lot of errors. Even for three tests it was a crap. It is fair to say that it did not scale. So we decided to automate it! And luckily for us, both DataDog and the [DataDog third-party library](https://github.com/zorkian/go-datadog-api) we are using supports creating and updating Monitors using DataDogs API. The process is quite straight forward and is illustrated below
 
 <script src="https://gist.github.com/gronnbeck/80b7f83b5b1367aa8745239881eba491.js"></script>
 
