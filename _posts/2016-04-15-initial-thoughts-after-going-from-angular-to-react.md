@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Initial Thoughts After Going From angular 1.x/ES5 to react-redux/ES6-7"
+title: "Initial Thoughts After Going From angular 1 to react-redux"
 ghavatar: 4218596
 ghname: martinsahlen
 jobtitle: Lead API and Integration Engineer
@@ -15,7 +15,7 @@ TLDR: Want to learn react-redux? check out this guide by mr redux himself:
 </div>
 
 ## Summary
-This post cointains some thoughts around migrating an existing app from angular 1.x to react-redux and some patterns that have appeared, as well as how it has affected our workflow. I will not get too technical on how i.e. react-redux bindings and react context works. This post gives some empirical arguments why react-redux with ES6-7 is something you definitely should consider for your next project.
+This post cointains some thoughts around migrating an existing app from angular 1.x / ES5 to react-redux and ES6-7 and some patterns that have appeared, as well as how it has affected our workflow. I will not get too technical on how i.e. react-redux bindings and react context works. This post gives some empirical arguments why react-redux with ES6-7 is something you definitely should consider for your next project.
 
 This post might be best served to people that are experienced in front-end development on single page applications and are familiar with frameworks and libraries such as react, ember and angular. But I may be wrong.
 
@@ -70,7 +70,7 @@ React-redux bindings and “smart components” enables you to extract just the 
 What the connect method essentially does is to map the app state to component props as your are familiar with from react, by slicing off the piece of state you want. It also adds the dispatch method as prop on the component so you can use it to dispatch actions based on i.e. mouse clicks, button clicks, input field focus / blur, routing / url updates, map zooming, panning etc.
 
 ### Why is react-redux a powerful pattern
-This is a powerful pattern for creating and reasoning about UIs, because it forces you to consider all possible events that can happen in the UI or internally in the app and give them a semantic meaning and how they should affect the app state.  All reducers receive actions and can respond with a new state however they see fit. The UI can be seen as just a pure function of the state object, easing overall testability and general reasoning about the UI. For debugging, it’s also great because you can easily reproduce state given a series of actions.
+React-redux  is a powerful pattern for creating and reasoning about UI. It forces you to consider all possible events that can happen in the app and give them a semantic meaning. Lastly, you decide how these events how they should affect the app state through dispatching actions.  All reducers receive actions and can respond with a new state however they see fit. The UI can be seen as just a pure function of the state object, easing overall testability and general reasoning about the UI. For debugging, it’s also great because you can easily reproduce state given a series of actions.
 
 Further, using react-redux with hot reloading is supported, meaning that the source code can be changed in real time (while the state is kept in store). Remember, the UI is a function of the state so we just render what is there at any time. Super simple and powerful when developing on complex navigation and interactions such as modal dialogs, forms, wizards with steps and similar. How many times have you (using live-reload) not done a small change to form, just to reset all form fields when you do a small css change? The great part is that is not really a feature, it is more consequence of the fact that all app state is the store and not scattered around in code that can be hot reloaded.
 
