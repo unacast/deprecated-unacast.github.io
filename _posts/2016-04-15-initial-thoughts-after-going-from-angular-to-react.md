@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Initial Thoughts After Going From angular 1 to react-redux"
+title: "From the trenches: What we learned building a production React Redux application"
 ghavatar: 4218596
 ghname: martinsahlen
 jobtitle: Lead API and Integration Engineer
@@ -8,7 +8,7 @@ tags: [js, react, redux]
 ---
 
 <div class="message">
-TLDR: Want to learn react-redux? check out this guide by mr redux himself:
+Hot tip: Want to learn react-redux? check out this guide by mr redux himself:
 <a href="https://egghead.io/series/getting-started-with-redux" target="blank">
   https://egghead.io/series/getting-started-with-redux
 </a>
