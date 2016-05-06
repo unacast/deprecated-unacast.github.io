@@ -15,14 +15,15 @@ Hot tip: Want to learn react-redux? check out this guide by mr redux himself:
 </div>
 
 ## Summary
-This post cointains some thoughts around migrating an existing app from angular 1.x / ES5 to react-redux and ES6-7 and some patterns that have appeared, as well as how it has affected our workflow. I will not get too technical on how i.e. react-redux bindings and react context works. This post gives some empirical arguments why react-redux with ES6-7 is something you definitely should consider for your next project.
+This post cointains some thoughts around building a single page app in react-redux and ES6-7 and some patterns that have appeared, as well as how it has affected our workflow. I will not get too technical on how i.e. react-redux bindings and react context works. This post gives some empirical arguments why react-redux with ES6-7 is something you definitely should consider for your next project.
 
 This post might be best served to people that are experienced in front-end development on single page applications and are familiar with frameworks and libraries such as react, ember and angular. But I may be wrong.
 
 ## Background
 
 ### Motivation
-The main motivation going from angular 1.x to react-redux may be many, but some are that
+The main motivation for us in building a single page app in react-redux and es6-7 was actually
+a bit different for different people in the team, but we can summarize it like this, keeping in mind that we previously had been using angular 1.x for everything frontend-related:
 
 * Angular 2 is coming,  Angular 1 is in maintenance mode and approaching end of life
 * Migration from Angular 1 to 2 is at best cumbersome
@@ -31,7 +32,7 @@ The main motivation going from angular 1.x to react-redux may be many, but some 
 * Using the new and exiting features of ES6-7
 * Learning new and fun stuff (the most important)
 
-So, it seemed to be a good time to jump on the boat and learn something new. Just to make it clear, i don't believe there are any silver bullets. Let’s consider this more of a story of where react-redux shines and makes life a as a developer a little easier. I say this a developer who have been doing large angular projects for the last three years - there are definitely many things to love about angular.
+So, it seemed to be a good time to jump on the boat and learn something new. Just to make it clear, I don't believe there are any silver bullets. Let’s consider this more of a story of where react-redux shines and makes life a as a developer a little easier. I say this a developer who have been doing large angular projects for the last three years - there are definitely many things to love about angular.
 
 ### Disclaimer
 We rely on react-redux-bindings, but there are obviously some features of i.e. the redux store and ES6/7 that is equally valid and useful in angular or in vanilla javascript for that matter. Also, react / redux are completely stand alone libraries that does not require or depend on each other to work. It might be difficult to always separate react from redux in this writing as we are using them very tightly coupled.
@@ -81,11 +82,11 @@ This together gives a very developer friendly and fun environment to work in. In
 ### Our approach and learnings
 Getting started with a npm / js project nowadays is a truly daunting task, and there are enough memes, tweets and rants about this, so I will not add to that. I do believe that it’s best to start simple and learn, so I’m not a huge fan of all these “starter kits”, because they just take your breath away in their complexity and fancy approaches to handle all use cases and corner cases. I think it’s the best way to lose motivation when learning new stuff. Start simple! At a later stage it’s obviously great to borrow ideas from other’s work but it’s not a good idea to solve all types of problems before you have them.
 
-We decided to clone the [react-redux counter example](https://github.com/reactjs/redux/tree/master/examples/counter) and build it out, adding additional tooling as we went along. This was a sweet spot in terms of being easy to understand, yet having some wiring done already.
+We decided to clone the [react-redux counter example](https://github.com/reactjs/redux/tree/master/examples/counter) and build it out, adding additional tooling as we went along. This was a sweet spot in terms of being easy to understand, yet having some wiring done already. It might a seem a bit contradictory to my claims about starting out simple, and we also had internal discussions on the team whether this was truly the best approach. In hindsight it might have been, but that's why they call it insight.
 
 What we saw was in many ways that we approached the [real-world-example](https://github.com/reactjs/redux/tree/master/examples/real-world), in terms of structure and features added. For instance, we quickly discovered that using [normalizr](https://github.com/gaearon/normalizr) is a must for storing API data in the store, as reducers don’t deal well with arrays. I think this plays well with my previous argument about not adding a lot of stuff before you know what it is for and why it is useful. It also made us understand better why normalizr is a good pattern for dealing with API data in reducers. Further, using among other the features in ES7 and lodash, you can slice and dice objects in an immutable manner. You can quote me on this; when developing in react-redux, you become very familiar with lodash you will probably use most of the functions at least once.
 
-As the app grew, we saw that Webpack started taking close to 30s on build, and 4-5s on hot-reload, which was getting painful. Using [happypack](https://github.com/amireh/happypack) and some modifications to how webpack deals with sourcemaps, we got times down to 6-8s on build and <1 s on hot-reload.
+As the app grew, we saw that Webpack started taking close to 30s on build, and 4-5s on hot-reload, which was getting painful. Using [happypack](https://github.com/amireh/happypack) and some modifications to how webpack deals with sourcemaps, we got times down to 6-8s on build and < 1 s on hot-reload.
 
 ## Closing notes
 Our experiences with react-redux so far are very good. It’s far from a silver bullet, and the batteries-not-included approach requires you to reason about your app’s structure and libraries to use for different functionality. We have opted for a module approach, which has its advantages and disadvantages, and the app is continuously being refactored as we learn and discuss along the way. Yet, we are very happy about our decision. If that’s the right choice for you and your team is another question, but I hope the above has given you some more insight - maybe not on the super technical level, but on why the philosophy behind react-redux is a great one.
