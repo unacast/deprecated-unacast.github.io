@@ -23,7 +23,7 @@ it didn't always give us as good results as we had hoped. So when I came across 
 discovered that they have an [API](https://words.bighugelabs.com/api.php), I decided
 it was time for a new experiment to see if we could improve the quality of our tag suggestions.
 
-For this test, I wanted to get suggestions for the actual tags in our database and I wanted to store the suggestions so we could display them in our admin UI. So I had to write something capable of accessing our API and the Big Huge Thesaurus API in a manageable way, but at the same time, I didn't want to build a full blown-app with a web UI and all the complexity that introduces.
+For this test, I wanted to get suggestions for the actual tags in our database and I wanted to store the suggestions so we could display them in our admin UI. So I had to write something capable of accessing our API and the Big Huge Thesaurus API in a manageable way, but at the same time, I didn't want to build a full-blown app with a web UI and all the complexity that introduces.
 
 ### How to quickly create a client to explore data from an API you consider using?
 
