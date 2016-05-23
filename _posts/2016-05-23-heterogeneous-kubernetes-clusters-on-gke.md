@@ -10,7 +10,6 @@ Up until recently <a href="https://k8s.io/">Kubernetes</a> clusters running on G
 
 <img src="/images/heterokube/eminems.png" alt="k8s logo" width="400px">
 
-
 ## Why not a cluster with different machines?
 
 There is at least one good reason to run a cluster with a homogeneous machine pool, it is the simplest thing. And up to a certain level, that is the smartest thing to do. If all your applications running on k8s has roughly the same demands to e.g. CPU and memory, it is also something you can do for a long time.
@@ -32,7 +31,12 @@ All clusters come with a default pool, and all new pools need to have a minimum 
 
 ### Creating a new node pool
 
-Creating a node pool is pretty straight forward, use the following command `gcloud alpha container node-pools create <name-of-pool> --machine-type=<machine-type> --cluster=<name-of-cluster>`
+Creating a node pool is pretty straight forward, use the following command 
+
+{% highlight bash %}
+  $> gcloud alpha container node-pools create <name-of-pool> \
+  --machine-type=<machine-type> --cluster=<name-of-cluster>
+{% endhighlight %}
 
 ### Scheduling pods to specific types of nodes
 
@@ -44,7 +48,7 @@ Let us imagine that we added a node-pool with high memory machines to our cluste
 
 To ensure that a pod is scheduled to the node pools, we need to add that label in the `nodeSelector` like this:
 
-  ```
+{% highlight yaml %}
   apiVersion: v1
   kind: Pod
   metadata:
@@ -56,7 +60,7 @@ To ensure that a pod is scheduled to the node pools, we need to add that label i
       imagePullPolicy: Always
     nodeSelector:
       cloud.google.com/gke-nodepool: highmem-pool
-  ```
+{% endhighlight %}
 
 ## Summary
 
