@@ -15,6 +15,7 @@ Up until recently <a href="https://k8s.io/">Kubernetes</a> clusters running on G
 There is at least one good reason to run a cluster with a homogeneous machine pool, it is the simplest thing. And up to a certain level, that is the smartest thing to do. If all your applications running on k8s has roughly the same demands to e.g. CPU and memory, it is also something you can do for a long time.
 
 What pushed us to explore heterogeneous clusters was mainly two things:
+
 1. We had some apps demanding a much higher amount of memory than others
 2. We had some apps that need to run on privileged GCP machines.
 
@@ -48,7 +49,7 @@ Let us imagine that we added a node-pool with high memory machines to our cluste
 
 To ensure that a pod is scheduled to the node pools, we need to add that label in the `nodeSelector` like this:
 
-{% highlight yaml %}
+{% highlight yaml linenos %}
   apiVersion: v1
   kind: Pod
   metadata:
