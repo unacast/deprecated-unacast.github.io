@@ -13,7 +13,7 @@ Today, I’m writing about concurrency and concurrency patterns in Go. In this b
 Disclaimer: This post is heavily is inspired by [“Go Concurrency Patterns”](https://www.youtube.com/watch?time_continue=3&v=f6kdp27TYZs) a talk by Rob Pike.
 
 ## Why is concurrency important?
-Web services today is largely dependent upon I/O. Either from disk, database or an external service. Running these operations sequentially and waiting for them to finish will result in a slow and underperforming system. Most modern web frameworks solves the basic issues for you. That is, without setup it handles each http request concurrently. But if you need to do something out of the ordinary, like calling a few external services and combined the results you are mostly on your own.
+Web services today is largely dependent upon I/O. Either from disk, database or an external service. Running these operations sequentially and waiting for them to finish will result in a slow and underperforming system. Most modern web frameworks solves the basic issues for you. That is, without setup it handles each http request concurrently. But if you need to do something out of the ordinary, like calling a few external services and combine the results you are mostly on your own.
 
 The two most common models for concurrency that I’ve used is shared-memory model using Threads like in Java. Or callbacks used in asynchronously languages like in Node.js. I believe that both approaches can be insanely powerful when done right. However, that they’re also insanely hard to get right. Shared-memory model sharing state/messages through memory using locks and is error-prone to say the least. And asynchronous programming is, at least in my experience, a hard programming paradigm reason about and especially to master.
 
@@ -24,7 +24,7 @@ Go solves concurrency in a different manner. It’s similar to Threads but inste
 
 Goroutines is a simple abstraction for running things (functions) concurrently.  This is achieved by prepending ``go`` before a function call. E.g.
 
-<script src="https://gist.github.com/gronnbeck/9c363b773e7bb43b4e58cea67ba8cb89.js"></script>
+<script src="https://gist.github.com/gronnbeck/d80cad16aff1514d32689bb3f11c5cdf.js"></script>
 
 A good example of the concept can be found [here](https://tour.golang.org/concurrency/1)
 
@@ -48,9 +48,9 @@ Above we see an example implementation of the naive approach. In other words we 
 
 <script src="https://gist.github.com/gronnbeck/4feddc7018cd917aceea0e2d471bc978.js"></script>
 
-We’ve now modified the naive approach using channels and goroutines. We see that each call is being issued inside a goroutine. And that the results are being collected in the for-loop ant the end. The code can be read sequentially and therefore easy to reason about. It’s also explicitly concurrent since we explicitly issue several goroutines. The only caveat is that the results may not be returned in the same order as the routines were issued.
-
 (PS: I’ve ignored handling errors in the concurrent examples. Don’t do this at home. It’s just for pure readability).
+
+We’ve now modified the naive approach using channels and goroutines. We see that each call is being issued inside a goroutine. And that the results are being collected in the for-loop ant the end. The code can be read sequentially and therefore easy to reason about. It’s also explicitly concurrent since we explicitly issue several goroutines. The only caveat is that the results may not be returned in the same order as the routines were issued.
 
 Notice that we can still are able to use the naive approach for fetching a resource: ``naive.Get(path string)``. And that the signature of the function is exactly the same as before. That is powerful! But does it actually run faster?
 
@@ -64,6 +64,6 @@ The conclusion is yes, it runs faster. Actually, it runs an order of magnitude f
 
 ## Closing notes
 
-We have shown the it’s easy to utilise concurrency in Go using channels and goroutines. However, this post has simplified a lot and the caveats you may encounter using channels and goroutines are not fully dressed here. So use channels and goroutines with caution. They can cause a lot of headache if over used. The general advice is to always start by building something naive before optimising.
+We have shown that it’s easy to utilise concurrency in Go using channels and goroutines. However, this post has simplified a lot and the caveats you may encounter using channels and goroutines are not fully addressed here. So use channels and goroutines with caution. They can cause a lot of headache if over used. The general advice is to always start by building something naive before optimising.
 
-I hope you have enjoyed reading this post. If I’ve done something completely absurd and stupid. Please tell me so, in the comment below or on twitter ([@gronnbeck](https://twitter.com/gronnbeck)). I’m still learning and having fun with Go. And I’m eager to learn from you as well.
+I hope you have enjoyed reading this post. If I’ve done something unidiomatic please tell me so in the comment below or on twitter ([@gronnbeck](https://twitter.com/gronnbeck)). I’m still learning and having fun with Go. And I’m always eager to learn from you as well.
