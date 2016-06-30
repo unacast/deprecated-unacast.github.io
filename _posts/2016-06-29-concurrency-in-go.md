@@ -50,7 +50,7 @@ Above we see an example implementation of the naive approach. In other words we 
 
 (PS: I’ve ignored handling errors in the concurrent examples. Don’t do this at home. It’s just for pure readability).
 
-We’ve now modified the naive approach using channels and goroutines. We see that each call is being issued inside a goroutine. And that the results are being collected in the for-loop ant the end. The code can be read sequentially and therefore easy to reason about. It’s also explicitly concurrent since we explicitly issue several goroutines. The only caveat is that the results may not be returned in the same order as the routines were issued.
+We’ve now modified the naive approach using channels and goroutines. We see that each call is being issued inside a goroutine. And that the results are being collected in the for-loop at the end. The code can be read sequentially and therefore easy to reason about. It’s also explicitly concurrent since we explicitly issue several goroutines. The only caveat is that the results may not be returned in the same order as the routines were issued.
 
 Notice that we can still are able to use the naive approach for fetching a resource: ``naive.Get(path string)``. And that the signature of the function is exactly the same as before. That is powerful! But does it actually run faster?
 
