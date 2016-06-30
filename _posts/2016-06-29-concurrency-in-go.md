@@ -18,7 +18,7 @@ Web services today is largely dependent upon I/O. Either from disk, database or 
 The two most common models for concurrency that I’ve used is shared-memory model using Threads like in Java. Or callbacks used in asynchronously languages like in Node.js. I believe that both approaches can be insanely powerful when done right. However, that they’re also insanely hard to get right. Shared-memory model sharing state/messages through memory using locks and is error-prone to say the least. And asynchronous programming is, at least in my experience, a hard programming paradigm to reason about and especially to master.
 
 ## Concurrency in Go
-Go solves concurrency in a different manner. It’s similar to Threads but instead of sharing messages through memory, go shares memory through messages. Go uses goroutines to achieve concurrency and channels for passing data between them. We will dig into these two concepts a bit further.
+Go solves concurrency in a different manner. It’s similar to Threads but instead of sharing messages through memory, it shares memory through messages. Go uses goroutines to achieve concurrency and channels for passing data between them. We will dig into these two concepts a bit further.
 
 ### Goroutines
 
