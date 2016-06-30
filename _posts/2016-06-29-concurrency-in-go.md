@@ -54,7 +54,7 @@ We’ve now modified the naive approach using channels and goroutines. We see th
 
 Notice that we can still are able to use the naive approach for fetching a resource: ``naive.Get(path string)``. And that the signature of the function is exactly the same as before. That is powerful! But does it actually run faster?
 
-In ``main.go`` we put everything together and do measure execution time to see if its actually faster.
+In ``main.go`` we put everything together and measure execution time to see if its actually faster.
 
 <script src="https://gist.github.com/gronnbeck/f40f95750c5ace8337afe03b1664c275.js"></script>
 
