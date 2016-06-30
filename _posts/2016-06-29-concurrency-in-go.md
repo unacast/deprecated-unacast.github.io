@@ -38,7 +38,7 @@ In the example below we see how channels and goroutines can be used to create a 
 
 ## Example: using goroutines and channels
 
-First let’s assume we want to create service that asks three external services and return them. Let’s call these three services Facebook, Twitter and Github. For simplicity, we a fake communication with each of these services, such that the result of each service can be found at ``https://localhost/{facebook, twitter, github}``, respectively.
+First let’s assume we want to create a service that asks three external services and return them. Let’s call these three services Facebook, Twitter and Github. For simplicity, we a fake communication with each of these services, such that the result of each service can be found at ``https://localhost/{facebook, twitter, github}``, respectively.
 
 The behaviour for ``GetAllTheThings`` is to fetch data from all services defined and combined them into a list. Let’s start with a naive approach.
 
