@@ -27,22 +27,29 @@ The final touch was to add [authentication using Google Apps](http://docs.redash
 ### The power of queries
 
 As the name implies, the power of BigQuery lies in queries on big datasets. To write these queries we can (luckily) just use our old friend SQL so we don't have to learn some new weird query language. The [documentation](https://cloud.google.com/bigquery/query-reference/) is nothing less than excellent. There's a detailed section on [Query Syntax](https://cloud.google.com/bigquery/query-reference#select-syntax) and then there's a really extensive list of [Functions](https://cloud.google.com/bigquery/query-reference#syntax-aggfunctions) that spans from simple `COUNT()` and `SUM()` via `REGEXP_EXTRACT()` on Strings and all kinds of Date manipulations like `DATE_DIFF()`. There's also [beta support](https://cloud.google.com/bigquery/sql-reference/)
+
 > which is compliant with the SQL 2011 standard and has extensions that support querying nested and repeated data
 
-but that's sadly not supported in re:dash yet (at least not in the version included in the GCE image we use).
+but that's sadly not supported in Re:dash yet (at least not in the version included in the GCE image we use).
 
 In Re:dash you can utilize all of BigQuery's querying power and you can (and should) save those queries with descriptive names to use later for visualizations in dashboards. Here's a screenshot of the query editor and the observant reader will notice that I've used Google's public `nyc-tlc:yellow` dataset in this example. It's a dataset containing lots and lots of data about NYC Yellow Cab trips and I'll use them in my examples because they're kind of similar to our beacon interaction data.
 
 ![1000 cab trips](/images/redash/1000 cab trips.png)
 
-It's however worth noting that you don't get any autocomplete functionality in Re:dash, so if you want to explore the different functions of BigQuery using the tab key you should use the "native" query editor instead. Just ⌘-C/⌘-V the finished query into Re:dash and start visualizing.
+It's, however, worth noting that you don't get any autocomplete functionality in Re:dash, so if you want to explore the different functions of BigQuery using the tab key you should use the "native" query editor instead. Just ⌘-C/⌘-V the finished query into Re:dash and start visualizing.
 
 ### Visualize it
 
-Every query view in Re:dash has a section at the bottom where you can create visualizations of the data returned by that specific query. We can choose between these visualization types: `[Boxplot, Chart, Cohort, Counter, Map]` and here's how 100 cab trips looks in a map
+Every query view in Re:dash has a section at the bottom where you can create visualizations of the data returned by that specific query. We can choose between these visualization types: `[Boxplot, Chart, Cohort, Counter, Map]` and here's how 100 cab trips look in a map
 
 ![100 cab trips](/images/redash/visualizations.png)
 
 When you get a handful of these charts and maps you might want to gather them in a dashboard to e.g. showcase them on a monitor in the office. Re:dash has a dashboard generator where you can choose to add widgets based on the visualizations you have made from your different queries. You can even rename and rearrange these widgets to create the most informative view. Here's an example dashboard with the map we saw earlier and a graph showing the number of trips for each day in a month. The graph makes it easy to see that the traffic fluctuates throughout the week, with a peak on Fridays.
 
 ![dashboard](/images/redash/dashboard.png)
+
+### So what's the conclusion?
+
+Re:dash has been a pleasant experience so far, and it has helped us get more insight into the vast amount of data we have. We discover new ways to query the data because it's easier to picture a specific graph or map that we want to produce rather than just numbers in columns.
+
+There are some rough edges, however, that have been bothering us a bit. The prebuilt GCE images aren't entirely up to date with the latest releases, unfortunately. The documentation mentions a way to [upgrade](http://docs.redash.io/en/latest/upgrade.html) to the newest release, but we haven't gotten around to that yet. The lack of support for the Standard SQL syntax in BigQuery is also a little disappointing since that syntax has even better documentation and the feature set seems larger, but it's not that big of a deal. The biggest problem we have been facing is that the UI sometimes freezes and crashes that tab in the browser. We haven't pinpointed exactly what causes it yet, whether it's the size of the result set or the size of the dataset we're querying. It's really annoying regardless of the cause because it's hard to predict which queries will cause the crash. Hopefully, this will be solved when we figure out how to upgrade to a newer version or the Re:dash team releases an updated image.
