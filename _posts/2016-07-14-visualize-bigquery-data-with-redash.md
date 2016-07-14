@@ -39,6 +39,10 @@ It's however worth noting that you don't get any autocomplete functionality in R
 
 ### Visualize it
 
-Every query view in Re:dash has a section at the bottom where you can create visualizations of the data returned by that specific query. We can choose between these visualization types: `[Boxplot, Chart, Cohort, Counter, Map]` and here's how a 100 cab trips looks in a map
+Every query view in Re:dash has a section at the bottom where you can create visualizations of the data returned by that specific query. We can choose between these visualization types: `[Boxplot, Chart, Cohort, Counter, Map]` and here's how 100 cab trips looks in a map
 
-![100 cab trips](/images/redash/visualizations.png) 
+![100 cab trips](/images/redash/visualizations.png)
+
+When you get a handful of these charts and maps you might want to gather them in a dashboard to e.g. showcase them on a monitor in the office. Re:dash has a dashboard generator where you can choose to add widgets based on the visualizations you have made from your different queries. You can even rename and rearrange these widgets to create the most informative view. Here's an example dashboard with the map we saw earlier and a graph showing the number of trips for each day in a month. The graph makes it easy to see that the traffic fluctuates throughout the week, with a peak on Fridays.
+
+![dashboard](/images/redash/dashboard.png)
