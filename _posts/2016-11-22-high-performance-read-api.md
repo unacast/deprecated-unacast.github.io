@@ -122,7 +122,7 @@ Kubernetes pod.
 By deploying this we'll have a Redis instances for each pod replica.
 In this specific case we'll have three Redis instances. That means we need
 some mechanism for keeping these instances in sync. Implementing sync functionality is
-horrible to do on your own [citation needed]. Luckily, Redis can be run in master-slave mode
+horrible to do on your own <sup>[citation needed]</sup>. Luckily, Redis can be run in master-slave mode
 and we've stable Redis instances hosted by compose.io.
 By configuring every Redis sidecar instance as a slave of the master
 run by compose.io. We can just update the master and not worry about
