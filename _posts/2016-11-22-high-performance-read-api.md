@@ -20,7 +20,7 @@ And we've spent a lot of time designing and experimenting and researching to des
 We've shared what we've learned along the way. A lot of these posts has been theoretical but
 in todays post we're getting our hands dirty, and we're going to implement an API
 that scales when being subject to massive amount of read requests. And we're doing
-this using [Redis](redis.io). All the examples will be ran using [Kubernetes](kubernetes.io).
+this using [Redis](redis.io). All the examples will be run using [Kubernetes](kubernetes.io).
 
 We assume that the logic to keep the data in Redis updated has been
 implemented somewhere else. And we also assume that the rate of adding or updating data (writes) is low.
@@ -32,7 +32,7 @@ All code snippets included in this post can be found in its full form
 
 ## Redis
 
-Before we get started we need to talk about Redis. The Redis team has described
+Before we get started we need to talk about Redis[.](https://youtu.be/kpk2tdsPh0A) The Redis team has described
 Redis quite good on their homepage
 
 > Redis is an open source (BSD licensed), in-memory data structure store,
@@ -89,7 +89,7 @@ available at GCP so decided to use [compose.io](https://compose.io)'s Redis host
 
 Setting up the service using a single Redis is pretty straight forward using Compose.io.
 Compose.io has some [great guides](https://www.compose.com/articles/get-started-with-redis-on-compose/)
-to have you can get started with their Redis hosting as well.
+on how you to get started with their Redis hosting as well.
 The kube manifest for running a kubernetes deployment and service is added
 below:
 
@@ -114,7 +114,7 @@ always be deployed together on the same machine. Sharing the same IP and
 port ranges. So don't try to bundle two services using the same ports, it'll
 simply not work.
 
-The following shows to bundle the two containers together inside a
+The following shows how to bundle the two containers together inside a
 Kubernetes pod.
 
 <script src="https://gist.github.com/gronnbeck/2fd6831fdfaac73d4ac0095f9e649854.js"></script>
@@ -181,7 +181,7 @@ to share this in the future.
 
 This post didn't cover if the ``Redis as a sidecar container`` approach scaled
 linearly as more CPU was added. This is outside of the scope of this post.
-But our internal testing has shown this to be true. You're welcome to use test this yourself.
+But our internal testing has shown this to be true. You're welcome to test this yourself.
 
 At Unacast we're obsessed with monitoring. One of our mantras is
 "monitoring over testing". And notice we haven't added any monitoring for the Redis
