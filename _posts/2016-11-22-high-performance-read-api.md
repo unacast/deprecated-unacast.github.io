@@ -45,7 +45,7 @@ where you use SQL to query. But it is shipped with multiple commands for
 manipulating different types of data structures.
 
 Redis is a really powerful tool and should be a part of every developers toolkit.
-If Redis isn't the best fit for you. I'll still recommend investing time into
+If Redis isn't the best fit for you, I'll still recommend investing time into
 learning how and when to use a in-memory database.
 
 
@@ -98,7 +98,7 @@ below:
 ### Redis as a sidecar container
 
 Before we describe how to setup a Redis as a sidecar container. We've to give
-short description of what a sidecar is. The sole responsibility
+short description of what a sidecar is. The sole responsibility of a
 [sidecar container](http://blog.kubernetes.io/2015/06/the-distributed-system-toolkit-patterns.html)
 is to support another container. And in this case the job of the
 Redis sidecar container is to support the API. In Kubernetes we solve this
@@ -123,7 +123,7 @@ By deploying this we'll have a Redis instances for each pod replica.
 In this specific case we'll have three Redis instances. That means we need
 some mechanism for keeping these instances in sync. Implementing sync functionality is
 horrible to do on your own <sup>[citation needed]</sup>. Luckily, Redis can be run in master-slave mode
-and we've stable Redis instances hosted by compose.io.
+and we've a stable Redis instances hosted by compose.io.
 By configuring every Redis sidecar instance as a slave of the master
 run by compose.io. We can just update the master and not worry about
 propagating the data the slaves. Our unscientific tests showed us that the Redis
@@ -138,11 +138,11 @@ We expect this architecture to scale better than the central Redis approach.
 
 All the tests were run using a Kubernetes cluster:
 
-  * 12 instances of g1-small
+  * 12 instances of g1-small virtual machines
   * 12 pod replicas
 
-We used [vegeta](https://github.com/tsenart/vegeta) distributed on 5
-``n1-standard-4`` nodes to run the performance tests.
+We used [vegeta](https://github.com/tsenart/vegeta) distributed on five
+``n1-standard-4`` virtual machines to run the performance tests.
 
 The graphs below are the results from the performance tests.
 The results focuses on success rate and response times.
