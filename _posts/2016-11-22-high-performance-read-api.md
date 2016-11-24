@@ -20,7 +20,7 @@ And we've spent a lot of time designing and experimenting and researching to des
 We've shared what we've learned along the way. A lot of these posts has been theoretical but
 in todays post we're getting our hands dirty, and we're going to implement an API
 that scales when being subject to massive amount of read requests. And we're doing
-this using [Redis](redis.io). All the examples will be run using [Kubernetes](kubernetes.io).
+this using [Redis](https://redis.io). All the examples will be run using [Kubernetes](https://kubernetes.io).
 
 We assume that the logic to keep the data in Redis updated has been
 implemented somewhere else. And we also assume that the rate of adding or updating data (writes) is low.
