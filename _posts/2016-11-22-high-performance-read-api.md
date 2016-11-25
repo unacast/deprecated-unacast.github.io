@@ -61,13 +61,13 @@ and test them on scalability. The two models we're testing are:
  instance of the API.
 
 The performance tests will be run against the same service using the
-same endpoint for both models. I've extracted the endpoint from ``main.go``
+same endpoint for both models. I've extracted the endpoint from *main.go*
 and included it below.
 
 <script src="https://gist.github.com/gronnbeck/688330c5bbcf8bd732aa0b28d3433314.js"></script>
 
-The snippet does one simple thing. It asks Redis for a ``string`` that is
-stored using the key ``known-key``. And from this simple endpoint we'll
+The snippet does one simple thing. It asks Redis for a **string** that is
+stored using the key **known-key**. And from this simple endpoint we'll
 look how Redis behaves under pressure and if it scales. We expect different
 behavior from the two different architectural approaches.
 This example might seem constructed, a real world examples that is similar to this
@@ -142,7 +142,7 @@ All the tests were run using a Kubernetes cluster:
   * 12 pod replicas
 
 We used [vegeta](https://github.com/tsenart/vegeta) distributed on five
-``n1-standard-4`` virtual machines to run the performance tests.
+*n1-standard-4* virtual machines to run the performance tests.
 
 The graphs below are the results from the performance tests.
 The results focuses on success rate and response times.
@@ -162,8 +162,8 @@ The results focuses on success rate and response times.
 ## Conclusion
 
 As expected we see that the sidecar container scales better than the central
-approach. We observe that the central approach is able to scale to about ``15 000
-reads/second``, while the other can handle over ``60 000 reads/second`` without
+approach. We observe that the central approach is able to scale to about 15 000
+reads/second, while the other can handle over 60 000 reads/second without
 any problems. Remember that these tests are run on the same hardware and that
 only a minor change in the APIs architecture resulted in a major performance gain.
 
@@ -179,7 +179,7 @@ to share this in the future.
 
 ## Further work
 
-This post didn't cover if the ``Redis as a sidecar container`` approach scaled
+This post didn't cover if the Redis as a sidecar container approach scaled
 linearly as more CPU was added. This is outside of the scope of this post.
 But our internal testing has shown this to be true. You're welcome to test this yourself.
 
