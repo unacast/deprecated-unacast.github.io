@@ -27,7 +27,7 @@ Pubsub is a distributed publish/subscriber queue. It can be used to propagate me
 
 #### BigQuery
 
-BigQuery is a great database for building analytics tools. Storing data is cheap and you only pay for querying and storing data. BigQuery is great because of its out of the box capabilities for querying large amounts of data really fast. To put things into perspective our thorough usage we see that BigQuery can query 1GB of data as fast as 100GB (and probably even more). One thing to remember when using BigQuery is that it's an append-only database, meaning that you cannot delete single rows, only tables<sup>3</sup>. In other words, where Cassandra as row-level TTLs BigQuery ships with table-level TTLs. So implementing data retention has to be done differently and may not be straight forward if you're coming from a standard SQL perspective.
+BigQuery is a great database for building analytics tools. Storing data is cheap and you only pay for querying and storing data. BigQuery is great because of its out of the box capabilities for querying large amounts of data really fast. To put things into perspective, with our thorough usage we've seen that BigQuery can query 1GB of data just as fast as 100GB (and probably even more). One thing to remember when using BigQuery is that it's an append-only database, meaning that you cannot delete single rows, only tables<sup>3</sup>. In other words, where Cassandra as row-level TTLs BigQuery ships with table-level TTLs. So implementing data retention has to be done differently and may not be straight forward if you're coming from a standard SQL perspective.
 
 #### App Engine
 
