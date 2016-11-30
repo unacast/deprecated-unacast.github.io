@@ -15,7 +15,7 @@ In this blog post will focus on why we at Unacast chose GCP as our cloud provide
 
 Today the natural choice of cloud is Amazon Web Services (AWS). And with good reason. AWS pioneered many of the great cloud services out there, S3, EC2, Lambda etc. It has as far as we know the longest list of cloud components you can use to build your platform <sup>1</sup>. And it’s battle tested at scale by Amazon, Netflix, AirBnB and many others. So why did we choose GCP instead?
 
-Actually, we didn’t. Unacast started out building its platform on a combination of Heroku and AWS. And after some fumbling, sessions of banging our heads against the wall, and some help from a consultant<sup>2</sup> we decided to try GCP. And with some effort and a lot of luck it turned out to be the right platform for us. The reason being two fold 1) GCPs big data capabilities and 2) it helps us minimise time used on operations.  
+Actually, we didn’t. Unacast started out building its platform on a combination of Heroku and AWS. And after some fumbling, sessions of banging our heads against the wall, and some help from a consultant<sup>2</sup> we decided to try GCP. And with some effort and a lot of luck it turned out to be the right platform for us. The reason for testing GCP was two fold 1) GCPs big data capabilities and 2) it helps us minimise time used on operations.  
 
 There is no secret that Google knows how to handle large amounts of data. And many of the tools provided at GCP is designed for handling storing and processing big data. Tools like Dataflow, Pubsub, BigQuery, Datastore, and BigTable are really powerful tools for data management. GCP also as great environments for running services like App-, Cloud Engine and Dataflow helps us maximise the time used to build business critical features fast, rather than using developer time on keeping the lights on.
 
@@ -53,7 +53,7 @@ Cloud SQL is a great service for running a SQL database with automatic backups, 
 
 We haven’t been able to test all the features of GCP and some of them looks really promising. We're really excited about the [machine learning](https://cloud.google.com/products/machine-learning/) module. And we hope they’ll support [Endpoints](https://cloud.google.com/appengine/docs/java/endpoints/) for other services than AppEngine soon.
 
-Choosing the right cloud platform isn’t straight forward. It’s hard to know if the services provided by a platform at hand is the right services. We at Unacast have learned from first hand experience that more isn’t necessarily better. And that your first choice and instinct might not always be correct. We’ve still feel that GCP is the right choice for us, and we hope we don't grow out of it anytime soon, ideally, never.
+Choosing the right cloud platform isn’t straight forward. It’s hard to know if the services provided by a platform at hand is the right services. We at Unacast have learned from first hand experience that more isn’t necessarily better. And that your first choice and instinct might not always be correct. It was and is still the right choice for us. And after [Spotify announced that they we're moving their infrastructure to GCP](https://news.spotify.com/us/2016/02/23/announcing-spotify-infrastructures-googley-future/), we're more sure than ever that we chose the right cloud platform.
 
 ## Footnotes
 
