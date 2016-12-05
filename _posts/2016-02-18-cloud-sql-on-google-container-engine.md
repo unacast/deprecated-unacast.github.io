@@ -7,6 +7,8 @@ jobtitle: Platform Engineer
 tags: [devops, cloud, google-container-engine, cloud-sql, google-cloud-platform, gke]
 ---
 
+*Update: You can now use [MySQL socket factory](https://cloud.google.com/sql/docs/external#java) to connect an app in Google Container Engine to Cloud SQL.*
+
 This post is a post-mortem of a two minute job taking us three days. Our two minute job at hand was connecting a Java application running on Google Container Engine to Cloud SQL. Normally a straightforward job, but due to several constraints it turned out to be a bit of a hustle.
 
 If you are already working on the Google Cloud Platform you are likely to be familiar with both [Google Container Engine](https://cloud.google.com/container-engine/) and [Cloud SQL](https://cloud.google.com/sql/). Google Container Engine, henceforth GKE, is a fully fledged cluster management and container orchestration system, powered by [Kubernetes](http://kubernetes.io/). Cloud SQL is fully managed MySQL database service on demand.
