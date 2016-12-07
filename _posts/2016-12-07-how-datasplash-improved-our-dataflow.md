@@ -53,3 +53,15 @@ easy to get a grasp of we even have contributed a few [enhancements and bugfixes
 It's time to see of how Datasplash performs in the ring, and to showcase that I've chosen to reimplement the
 [*StreamingWordExtract*](https://github.com/GoogleCloudPlatform/DataflowJavaSDK/blob/master/examples/src/main/java/com/google/cloud/dataflow/examples/complete/StreamingWordExtract.java)
 example from the Dataflow documentation. A Dataflow-off, so to speak.
+
+The example pipeline reads lines of text from a PubSub topic, splits each line into individual words, capitalizes those
+words, and writes the output to a BigQuery table
+
+Here's how it the code looks:
+
+<script src="https://gist.github.com/torbjornvatn/89804fe22277ac79f5ca7ab22ebf7b71.js"></script>
+
+<figure>
+  <img src="/images/datasplash/dataflowui.png"/>
+  <figcaption>This is the Dataflow UI view of the pipeline</figcaption>
+</figure>
