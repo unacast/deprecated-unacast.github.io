@@ -5,7 +5,7 @@ ghavatar: 4453
 ghname: torbjornvatn
 name: Torbjørn Vatn
 jobtitle: Senior Platform Engineer
-tags: [Dataflow, Datasplash, SCIO, Data pipelines]
+tags: [Google Dataflow, Datasplash, SCIO, Data Pipelines, BigQuery, PubSub]
 ---
 
 
@@ -57,11 +57,50 @@ example from the Dataflow documentation. A Dataflow-off, so to speak.
 The example pipeline reads lines of text from a PubSub topic, splits each line into individual words, capitalizes those
 words, and writes the output to a BigQuery table
 
-Here's how it the code looks:
+Here's how it the code looks in it's [entirety](gist.github.com/torbjornvatn/89804fe22277ac79f5ca7ab22ebf7b71), and I'll
+talk about some of the highlights specifically about the the pipeline composition bellow.
 
-<script src="https://gist.github.com/torbjornvatn/89804fe22277ac79f5ca7ab22ebf7b71.js"></script>
+First we have to create a pipeline instance, and it can in theory be use several times to create parallel pipelines.
+<code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="streaming_word_extract.clj" data-gist-line="71-74"/>
 
+Then we apply the different transformation functions with the pipeline as the first argument.
+Notice that the pipeline has to be run in a separate step, passing the pipeline instance as an argument.
+This isn't very functional, but it's because of the underlying Java SDK.
+<code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="streaming_word_extract.clj" data-gist-line="81-82"/>
+
+Inside `apply-transforms-to-pipeline` we utilize the [Threading Macro](http://clojure.org/guides/threading_macros)
+to start passing the pipeline as the last argument to the `read-from-pubsub` transformation.
+The Threading Macro will then pass the result of that transformation as the last argument of the next one, and so on
+and so forth.
+<code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="streaming_word_extract.clj" data-gist-line="45,47"/>
+
+Here we se the actual processing of the data. For each message from PubSub we extract words (and flatten those lists
+with mapcat), uppercase each word and add them to a simple row json object. Notice the different ways we pass functions
+to map/mapcat.
+<code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="streaming_word_extract.clj" data-gist-line="50,53,57"/>
+
+Last, but not least we write the results as separate lines to the given BigQuery table.
+<code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="streaming_word_extract.clj" data-gist-line="60-65"/>
+
+And thats it really! No
+<code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="java-examples.java" data-gist-line="1-3"/>
+to apply a simple, pure function.
+
+Here's a quick look at the graphical representation of the pipeline in the Dataflow UI.
 <figure>
   <img src="/images/datasplash/dataflowui.png"/>
-  <figcaption>This is the Dataflow UI view of the pipeline</figcaption>
+  <figcaption>This is the Dataflow UI view of the pipeline. 27.770 words have been added to BigQuery</figcaption>
 </figure>
+
+## Conclusion
+To summarize I'll say that the experience of building Dataflow pipelines in <img alt="Clojure" src="https://qph.ec.quoracdn.net/main-qimg-516e5be0cc307adbdc22f811eeed91e4?convert_to_webp=true" style="height: 26px; margin-bottom:4px"/>
+using Datasplash has been a pleasant and exciting experience. I would like to emphasize a couple of things I think have turned out
+to be extra valuable.
+
+- The code is mostly known Clojure constructs, and the Datasplash specific code try to use the same semantics. Like `ds/map` and `ds/filter`.
+- Having a [REPL](http://www.tryclj.com/) at hand in the [editor](https://atom.io/packages/proto-repl) to test small snippets and function is very underestimated,
+I've found my self using it all the time.
+- Setting up aliases to run different pipelines (locally and in the ☁️ ) with different arguments via [Leiningen](http://leiningen.org/) has
+also been really handy when testing a pipeline during development.
+- The conciseness and overall feeling of "correctness" when working in an immutable, functional LISP has also been something
+that I've come to love even more now that I've tried it in a full fledged project. 
