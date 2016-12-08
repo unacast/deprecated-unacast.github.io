@@ -57,7 +57,7 @@ example from the Dataflow documentation. A Dataflow-off, so to speak.
 The example pipeline reads lines of text from a PubSub topic, splits each line into individual words, capitalizes those
 words, and writes the output to a BigQuery table
 
-Here's how it the code looks in it's [entirety](gist.github.com/torbjornvatn/89804fe22277ac79f5ca7ab22ebf7b71), and I'll
+Here's how it the code looks in it's [entirety](https://gist.github.com/torbjornvatn/89804fe22277ac79f5ca7ab22ebf7b71), and I'll
 talk about some of the highlights specifically about the the pipeline composition bellow.
 
 First we have to create a pipeline instance, and it can in theory be use several times to create parallel pipelines.
@@ -74,15 +74,15 @@ The Threading Macro will then pass the result of that transformation as the last
 and so forth.
 <code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="streaming_word_extract.clj" data-gist-line="45,47"/>
 
-Here we se the actual processing of the data. For each message from PubSub we extract words (and flatten those lists
+Here we see the actual processing of the data. For each message from PubSub we extract words (and flatten those lists
 with mapcat), uppercase each word and add them to a simple row json object. Notice the different ways we pass functions
 to map/mapcat.
 <code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="streaming_word_extract.clj" data-gist-line="50,53,57"/>
 
-Last, but not least we write the results as separate lines to the given BigQuery table.
+Last, but not least we write the results as separate rows to the given BigQuery table.
 <code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="streaming_word_extract.clj" data-gist-line="60-65"/>
 
-And thats it really! No
+And that's it really! No
 <code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="java-examples.java" data-gist-line="1-3"/>
 to apply a simple, pure function.
 
@@ -103,4 +103,4 @@ I've found my self using it all the time.
 - Setting up aliases to run different pipelines (locally and in the ☁️ ) with different arguments via [Leiningen](http://leiningen.org/) has
 also been really handy when testing a pipeline during development.
 - The conciseness and overall feeling of "correctness" when working in an immutable, functional LISP has also been something
-that I've come to love even more now that I've tried it in a full fledged project. 
+that I've come to love even more now that I've tried it in a full fledged project.
