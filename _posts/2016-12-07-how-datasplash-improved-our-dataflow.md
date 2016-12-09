@@ -97,7 +97,7 @@ To summarize I'll say that the experience of building Dataflow pipelines in <img
 using Datasplash has been a pleasant and exciting experience. I would like to emphasize a couple of things I think have turned out
 to be extra valuable.
 
-- The code is mostly known Clojure constructs, and the Datasplash specific code try to use the same semantics. Like ```ds/map``` and *ds/filter*.
+- The code is mostly known Clojure constructs, and the Datasplash specific code try to use the same semantics. Like *ds/map* and *ds/filter*.
 - Having a [REPL](http://www.tryclj.com/) at hand in the [editor](https://atom.io/packages/proto-repl) to test small snippets and function is very underestimated,
 I've found my self using it all the time.
 - Setting up aliases to run different pipelines (locally and in the ☁️ ) with different arguments via [Leiningen](http://leiningen.org/) has
