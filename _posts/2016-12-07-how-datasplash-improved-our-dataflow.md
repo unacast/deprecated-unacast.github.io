@@ -43,8 +43,8 @@ It looks promising, but we felt that their DSL diverged too much from the "nativ
 
 Next on our list was [Datasplash](https://github.com/ngrunwald/datasplash), a thin
 <img alt="Clojure" src="https://qph.ec.quoracdn.net/main-qimg-516e5be0cc307adbdc22f811eeed91e4?convert_to_webp=true" style="height: 26px; margin-bottom:4px"/> wrapper
-around the Java SDK with a Clojuresque approach to the pipeline definitions, using concepts such as `->>` (threading),
-`map` and `filter` mixed with regular clojure functions, what's not to like? So we went with Datasplash and have really
+around the Java SDK with a Clojuresque approach to the pipeline definitions, using concepts such as *->>* (threading),
+*map* and *filter* mixed with regular clojure functions, what's not to like? So we went with Datasplash and have really
 enjoyed using it in several of our data pipeline projects. Since the Datsplash source is quite extensible and relatively
 easy to get a grasp of we even have contributed a few [enhancements and bugfixes](https://github.com/ngrunwald/datasplash/graphs/contributors) to the project.
 
@@ -68,8 +68,8 @@ Notice that the pipeline has to be run in a separate step, passing the pipeline 
 This isn't very functional, but it's because of the underlying Java SDK.
 <code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="streaming_word_extract.clj" data-gist-line="81-82"/>
 
-Inside `apply-transforms-to-pipeline` we utilize the [Threading Macro](http://clojure.org/guides/threading_macros)
-to start passing the pipeline as the last argument to the `read-from-pubsub` transformation.
+Inside *apply-transforms-to-pipeline* we utilize the [Threading Macro](http://clojure.org/guides/threading_macros)
+to start passing the pipeline as the last argument to the *read-from-pubsub* transformation.
 The Threading Macro will then pass the result of that transformation as the last argument of the next one, and so on
 and so forth.
 <code data-gist-id="89804fe22277ac79f5ca7ab22ebf7b71" data-gist-file="streaming_word_extract.clj" data-gist-line="45,47"/>
@@ -97,7 +97,7 @@ To summarize I'll say that the experience of building Dataflow pipelines in <img
 using Datasplash has been a pleasant and exciting experience. I would like to emphasize a couple of things I think have turned out
 to be extra valuable.
 
-- The code is mostly known Clojure constructs, and the Datasplash specific code try to use the same semantics. Like `ds/map` and `ds/filter`.
+- The code is mostly known Clojure constructs, and the Datasplash specific code try to use the same semantics. Like *ds/map* and *ds/filter*.
 - Having a [REPL](http://www.tryclj.com/) at hand in the [editor](https://atom.io/packages/proto-repl) to test small snippets and function is very underestimated,
 I've found my self using it all the time.
 - Setting up aliases to run different pipelines (locally and in the ☁️ ) with different arguments via [Leiningen](http://leiningen.org/) has
