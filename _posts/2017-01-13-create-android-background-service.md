@@ -9,25 +9,28 @@ tags: [android, sdk]
 
 ## Introduction
 
+[@torbjornvatn](https://github.com/torbjornvatn) wrote in his blogpost [Welcome to Unacastle](/2015/11/03/welcome-to-unacastle/) about how to interact with beacons so your phone can greet you when you enter our office. Later he decided that a greeting message wasn't good enough, and that everybody should have their own personal theme song as described in [Your own personal theme song](/2015/12/14/personal-theme-song/) via a 3rd party application.
+
+In this blogpost I will describe how you can setup your own background service in any Android application to enable this without using 3rd party applications.
+
 <div class="message">
     How do you create a background service in Android that lives its own life?
-    Could you also communicate with it?
+    And can you communicate with it?
 </div>
 
 ## Android background service?
 
-> I want some stuff to happen in the background of my application, even if my application is closed!
-> You see, I really want some function to be invoked every second or so which tells me the current time.
-> And if the application is open, it should be able to display this time.
+> Scenario:
+> I really want my application to check the time every second, even if the application is closed.
+> And when the application is open, it should be able to display the current time from the service.
 
-This isn't really a useful scenario, but the process of getting this up and running is the same as other more usefull tasks.
+This isn't really a useful scenario, but the process of getting this up and running is the same as other more useful tasks.
 
 So how do you create a long running background service in Android?
 
-We want a service that completely runs in the background that doesn't interfere with the applications `main thread`. It should provide an interface to communicate with the application when needed.
-
-We will build a low priority background service that fires a callback every second to anyone listening.
-It should be kept running in the background at all times, even when the application is closed.
+We will build a background service that fires a callback every second to anyone listening.
+To avoid too much work on the `main thread`, the service will do all its work on a separate low priority thread.
+And it should be kept running in the background at all times, even when the application is closed.
 
 ### Let my service run - always
 
