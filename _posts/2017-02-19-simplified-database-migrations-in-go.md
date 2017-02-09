@@ -15,7 +15,7 @@ There are two main criteria that one should look for when choosing a database mi
 
 ## Why you shouldn't roll back a database
 
-For some it might sound a little bit odd to say that you should never rollback a database, but let's think about what a rollback is for a moment. While you think about I'll define what I mean rollback and rollforward are.
+For some it might sound a little bit odd to say that you should never roll back a database, but let's think about what a rollback is for a moment. While you think about I'll define what I mean rollback and rollforward are.
 
 * Rollforward: an action in which you take your database from one state to another
 * Rollback: an action in which you take your database form one state to another
@@ -34,7 +34,7 @@ Not everyone agrees with always rolling forward, and that is ok, but this is the
 
 ## Why couldn't we just use an existing migration framework
 
-In regard of the rollback issue we could most likely have used an existing framework but not used the rollback feature. The main issue to why we wrote our own framework was that none of the framework I could find supported reading migration scripts from assets. In basically all our go application we compile everything to one file, meaning that sql files will have a pre-compile step where we generate go files from the content in the sql scripts. At the same time, it would be nice to use a file backed approach if we would like that in the future. This together with our opinionated view of migrations made us write a new migration framework.
+In regard of the roll back issue we could most likely have used an existing framework but not use the roll back feature. The main issue to why we wrote our own framework was that none of the framework I could find supported reading migration scripts from assets. In basically all our go application we compile everything to one file, meaning that sql files will have a pre-compile step where we generate go files from the content in the sql scripts. At the same time, it would be nice to use a file backed approach if we would like that in the future. This together with our opinionated view of migrations made us write a new migration framework.
 
 ## Implementing a migration framework
 
@@ -53,7 +53,7 @@ That doesn't sound so hard, and it isn't as we will see. The last point actually
 3. Get all migrations
 4. Start transaction
 5. Loop over and execute all migration, ignore those that are in the list of executed migrations since before
-6. Commit transaction if everything went ok, otherwise rollback transaction (note that this is not a migration rollback, just a transaction rollback)
+6. Commit transaction if everything went ok, otherwise roll back transaction (note that this is not roll back of the migration, just a roll back of the transaction)
 
 Now we know everything we need to know to implement the migrations framework. I won't cover all the code, which you can find here https://github.com/unacast/migrations/blob/master/migrations.go, but there is one thing that I would like to cover. If you look at the signature of the `Migrate` function it looks like this:
 
