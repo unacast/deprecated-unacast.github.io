@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Simplified database migrations in go"
+title: "Simplified database migrations in Go"
 ghavatar: 501424
 ghname: mastoj
 jobtitle: Platform Engineer
@@ -43,7 +43,7 @@ Before implementing something, it is always good to think about what you want to
 * Run migrations from assets
 * Run migrations from files
 * Run all migrations, that has not been run before, in one transaction
-* It should use the existing `sql.DB` package
+* It should use the existing **sql.DB** package
 * Only roll forward
 
 That does not sound too hard, and it is not as we will see. The last point actually makes things a little bit easier since we are leaving out one feature, rolling back, compared to most other migrations framework. When we know the set of features we need to define the main flow and it turns out it is quite simple:
@@ -55,23 +55,23 @@ That does not sound too hard, and it is not as we will see. The last point actua
 5. Loop over and execute all migrations, ignore those that are already executed
 6. Commit transaction if everything is ok, otherwise roll back transaction (note that this is not roll back of the migration, just a roll back of the transaction)
 
-Now we know everything we need to know to implement the migrations framework. I will not cover all the code, which you can find on [github](https://github.com/unacast/migrations/blob/master/migrations.go), but there is one thing that I would like to cover. If you look at the signature of the `Migrate` function it looks like this:
+Now we know everything we need to know to implement the migrations framework. I will not cover all the code, which you can find on [github](https://github.com/unacast/migrations/blob/master/migrations.go), but there is one thing that I would like to cover. If you look at the signature of the **Migrate** function it looks like this:
 
     func (migrator *Migrator) Migrate(getFiles GetFiles, getContent GetContent) 
 
-where `GetFiles` and `GetContent` has the following signature:
+where **GetFiles** and **GetContent** has the following signature:
 
     type GetFiles func() []string
     type GetContent func(string) string
 
-The rationale behind this approach, instead of giving a folder path where all the files are, is that we can take any function as parameter to the `Migrate` function that returns a list of strings pointing to where the actual content is and then use the second function to get that content. It also makes it very flexible since the migrations framework is agnostic to where and how the actual content is stored. 
+The rationale behind this approach, instead of giving a folder path where all the files are, is that we can take any function as parameter to the **Migrate** function that returns a list of strings pointing to where the actual content is and then use the second function to get that content. It also makes it very flexible since the migrations framework is agnostic to where and how the actual content is stored. 
 
-When writing your migrations, you will implement a function that has the signature of `GetFiles` and it will most likely do one of these two things:
+When writing your migrations, you will implement a function that has the signature of **GetFiles** and it will most likely do one of these two things:
 
 * Return a list of files in a folder or folder tree
 * Return a list of keys that you can use against some map to get content
 
-What your function that implements `GetContent` should do depends on how you decide you want to use the framework. If reading directly from files the input to `GetContent` should be file paths, that you get from your `GetFiles` function, and then your `GetContent` function just returns the content of those files. If you are using assets your `GetContent` function should read from the asset framework instead of from disk.
+What your function that implements **GetContent** should do depends on how you decide you want to use the framework. If reading directly from files the input to **GetContent** should be file paths, that you get from your **GetFiles** function, and then your **GetContent** function just returns the content of those files. If you are using assets your **GetContent** function should read from the asset framework instead of from disk.
 
 ## Using the framework
 
@@ -95,6 +95,6 @@ func runMigrations() {
 }
 ```
 
-In the example above we are using assets, which have been generated from sql files. The `getFiles` function returns a list of "file names" in the asset folder `migrations/sql`. The `getContent` function will get the output from `getFiles` as input and will just read the actual asset on each request. With those two defined we can now call `Migrate`.
+In the example above we are using assets, which have been generated from sql files. The **getFiles** function returns a list of "file names" in the asset folder **migrations/sql**. The **getContent** function will get the output from **getFiles** as input and will just read the actual asset on each request. With those two defined we can now call **Migrate**.
 
 Please try it out and let us know what you think. If you have any problems just register a github issue or (even better) send us a PR.
