@@ -38,7 +38,7 @@ time we need to process a non-trivial amount of data or we just need to run cont
 in that post that we found the Dataflow Java SDK less than ideal for defining data pipelines in code. The piping
 of transformations (pure functions) felt like something better represented in a proper functional language. We had
 a brief look at the Scala based [SCIO](https://github.com/spotify/scio) by
-<img alt="spotify" src="/images/datasplash/spotify.png" style="height: 20px; margin-bottom:2px"/> (which is also donated to [Apache Beam](https://issues.apache.org/jira/browse/BEAM-302) btw).
+<img alt="spotify" src="{{ site.url }}/images/datasplash/spotify.png" style="height: 20px; margin-bottom:2px"/> (which is also donated to [Apache Beam](https://issues.apache.org/jira/browse/BEAM-302) btw).
 It looks promising, but we felt that their DSL diverged too much from the "native" [Java/Beam one](https://github.com/spotify/scio/wiki/Scio%2C-Dataflow-and-Beam).
 
 Next on our list was [Datasplash](https://github.com/ngrunwald/datasplash), a thin
@@ -88,7 +88,7 @@ to apply a simple, pure function.
 
 Here's a quick look at the graphical representation of the pipeline in the Dataflow UI.
 <figure>
-  <img src="/images/datasplash/dataflowui.png"/>
+  <img src="{{ site.url }}/images/datasplash/dataflowui.png"/>
   <figcaption>This is the Dataflow UI view of the pipeline. 27.770 words have been added to BigQuery</figcaption>
 </figure>
 
