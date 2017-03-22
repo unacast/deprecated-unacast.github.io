@@ -11,15 +11,15 @@ tags: [clojure, clojurescript, dataflow, datasplash, cloudfunctions]
 ## What's the challenge?
 Here at Unacast we utilize [Cloud Dataflow](https://cloud.google.com/dataflow/) from Google quite extensively and
 we have both batch based and streaming pipelines. While the streaming pipelines are started on deploy and streams
-messages from [PubSub](https://cloud.google.com/pubsub/), the batching pipelines need to be created and started by some external system. This is typically an application that either has some Cron-like schedule or that listens
+messages from [PubSub](https://cloud.google.com/pubsub/), the batching pipelines need to be created and started by some external system. This is typically an application that either has some CRON-like schedule or that listens
 for changes in a [Cloud Storage](https://cloud.google.com/storage/) bucket.
 I must admit it feels a bit cumbersome to set up a separate app for triggers like this, as the Dataflow code itself is uploaded and run in its entirety in the Cloud.
 
 _Wouldn't it be nice if we could use some Google Cloud hosted service for these triggers as well?_
 
-## Enter App Engine Cron Service and Cloud Functions
+## Enter App Engine CRON Service and Cloud Functions
 
-This [blog post](https://cloud.google.com/blog/big-data/2016/04/scheduling-dataflow-pipelines-using-app-engine-cron-service-or-cloud-functions) by Google demonstrates how one can use [App Engines Cron functionality](https://cloud.google.com/appengine/docs/flexible/go/scheduling-jobs-with-cron-yaml) to trigger Dataflow periodically or [Cloud Functions](https://cloud.google.com/functions/docs/) to start pipelines when a file is uploaded/changed in a Cloud storage bucket.
+This [blog post](https://cloud.google.com/blog/big-data/2016/04/scheduling-dataflow-pipelines-using-app-engine-cron-service-or-cloud-functions) by Google demonstrates how one can use [App Engines CRON functionality](https://cloud.google.com/appengine/docs/flexible/go/scheduling-jobs-with-cron-yaml) to trigger Dataflow periodically or [Cloud Functions](https://cloud.google.com/functions/docs/) to start pipelines when a file is uploaded/changed in a Cloud storage bucket.
 The latter was exactly what I needed for my latest Dataflow project so I sat out to create a POC of this approach. The rest of this post is a summary of what I discovered.
 
 ## Prerequisites
