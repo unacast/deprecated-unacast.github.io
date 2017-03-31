@@ -39,7 +39,7 @@ The top four reasons I joined Unacast are:
 
 I try to keep myself updated on as much so I can and apply my knowledge to all kind of different problems. My main tool for problem solving is my brain, languages IDEs and other tools come second. I always try to think of problems as functional problems, which almost all programming problems are at least (if you ask me). I think breaking a problem down to functions piece by piece makes it much easier to solve the overall problem and test the individual pieces, composing them back to an application is just fitting the pieces.
 
-When it comes to what language I use depends on many things; what the rest of theam want to use, what make sense to use for the problem at hand, where is it going to run and more. If it where up to me all the time I would see more F# since I consider it as a nice mixture of functional programming but not to strict so it easy to have side effects if you need to.
+When it comes to what language I use depends on many things; what the rest of the team want to use, what make sense to use for the problem at hand, where is it going to run and more. If it where up to me all the time I would see more F# since I consider it as a nice mixture of functional programming but not to strict so it easy to have side effects if you need to. t
 
 
 ## What is the most fun thing about working at Unacast?
