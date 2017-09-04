@@ -35,7 +35,7 @@ App Engine is a scalable runtime environment for Java designed to scale without 
 
 #### Container Engine
 
-Container Engine is GCPs answer for hosting linux containers. It’s powered by Kubernetes which is, as of writing, the de facto standard for scheduling and running linux containers in production. On GCP we view Container Engine as the middle ground between Compute and App Engine. Where we believe you get the best tradeoff between operational overhead and flexibility. With Kubernetes you can do interesting things as [bundle databases or other services together to increase performance](http://labs.unacast.com/2016/11/22/high-performance-read-api/) which is impossible in App Engine. However, you have to worry about updating your Kubernetes cluster and keeping the nodes healthy and happy. Adding some operational complexity, work and time spent on not adding features.
+Container Engine is GCPs answer for hosting linux containers. It’s powered by Kubernetes which is, as of writing, the de facto standard for scheduling and running linux containers in production. On GCP we view Container Engine as the middle ground between Compute and App Engine. Where we believe you get the best tradeoff between operational overhead and flexibility. With Kubernetes you can do interesting things as [bundle databases or other services together to increase performance](http://unacast.github.com/2016/11/22/high-performance-read-api/) which is impossible in App Engine. However, you have to worry about updating your Kubernetes cluster and keeping the nodes healthy and happy. Adding some operational complexity, work and time spent on not adding features.
 
 #### Dataflow
 

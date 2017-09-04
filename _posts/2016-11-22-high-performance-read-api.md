@@ -194,8 +194,8 @@ another sidecar container inside the same pod.
 If you're interested in reading more about API design
 I can recommend the following posts from our archive:
 
- * [Make API documentation great again](http://labs.unacast.com/2016/10/23/make-api-documentation-great-again/)
+ * [Make API documentation great again](http://unacast.github.com/2016/10/23/make-api-documentation-great-again/)
 
- * [Best practices for concurrency control in REST APIs](http://labs.unacast.com/2016/04/08/best-practices-for-concurrency-control-in-rest-apis/)
+ * [Best practices for concurrency control in REST APIs](http://unacast.github.com/2016/04/08/best-practices-for-concurrency-control-in-rest-apis/)
 
- * [Idempotency in REST APIs](http://labs.unacast.com/2016/02/25/on-idempotency-in-distributed-rest-apis/)
+ * [Idempotency in REST APIs](http://unacast.github.com/2016/02/25/on-idempotency-in-distributed-rest-apis/)

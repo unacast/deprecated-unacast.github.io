@@ -30,7 +30,7 @@ The setup consists of three moving parts:
 - A Cloud Storage bucket that where files get added periodically by a partner of ours.
 - A Cloud Function configured to run each time something changes in that bucket.
 
-I had already written the actual Dataflow pipeline code in [Clojure using Datasplash](http://labs.unacast.com/2016/12/07/how-datasplash-improved-our-dataflow/) and I'll refer to that as `pipeline.jar` in the code examples later on. Since I already was in Clojure mode with the pipeline code I decided to try writing the Cloud Function in Clojurescript instead of vanilla Javascript. My colleague Martin had already proven that you can write such functions in several [different](https://github.com/MartinSahlen/go-cloud-fn) [languages](https://github.com/MartinSahlen/fsharp-gcloud-functions) that compiles to Javascript, including [Clojurescript](https://github.com/MartinSahlen/cloud-fn-test).
+I had already written the actual Dataflow pipeline code in [Clojure using Datasplash](http://unacast.github.com/2016/12/07/how-datasplash-improved-our-dataflow/) and I'll refer to that as `pipeline.jar` in the code examples later on. Since I already was in Clojure mode with the pipeline code I decided to try writing the Cloud Function in Clojurescript instead of vanilla Javascript. My colleague Martin had already proven that you can write such functions in several [different](https://github.com/MartinSahlen/go-cloud-fn) [languages](https://github.com/MartinSahlen/fsharp-gcloud-functions) that compiles to Javascript, including [Clojurescript](https://github.com/MartinSahlen/cloud-fn-test).
 
 ## Generating `index.js` and `package.json`
 

@@ -7,7 +7,7 @@ jobtitle: Platform Engineer
 tags: [rest, api, distributed systems, concurrency, developer experience]
 ---
 
-When designing REST API interfaces, the methods that modifies existing resources seem to bring forth significant design challenges. The two most prominent challenges are idempotency and concurrency control. [Ken Grønnbeck](https://twitter.com/gronnbeck) earlier wrote about [idempotency in REST APIs](http://labs.unacast.com/2016/02/25/on-idempotency-in-distributed-rest-apis/) on the Unacast Labs Blog. As a follow up, this post will discuss different approaches to concurrency control in REST APIs.
+When designing REST API interfaces, the methods that modifies existing resources seem to bring forth significant design challenges. The two most prominent challenges are idempotency and concurrency control. [Ken Grønnbeck](https://twitter.com/gronnbeck) earlier wrote about [idempotency in REST APIs](http://unacast.github.com/2016/02/25/on-idempotency-in-distributed-rest-apis/) on the Unacast Labs Blog. As a follow up, this post will discuss different approaches to concurrency control in REST APIs.
 
 
 <div class="message">

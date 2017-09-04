@@ -33,7 +33,7 @@ resource management, auto scaling and the integration with the other Google Clou
 Here at [Unacast](https://unacast.com) we receive **large** amounts of data, through both files and our APIs, that we
 need to filter, convert and pass on to storage in e.g. BigQuery. So being able to create both batch (files) and
 stream (APIs) based data pipelines using one DSL, running on our existing Google Cloud infrastructure was a big win.
-As Ken wrote in [his post on GCP](http://labs.unacast.com/2016/11/30/one-year-on-gcp/#dataflow) we try to use it every
+As Ken wrote in [his post on GCP](http://unacast.github.com/2016/11/30/one-year-on-gcp/#dataflow) we try to use it every
 time we need to process a non-trivial amount of data or we just need to run continuously running worker. Ken also mentioned
 in that post that we found the Dataflow Java SDK less than ideal for defining data pipelines in code. The piping
 of transformations (pure functions) felt like something better represented in a proper functional language. We had

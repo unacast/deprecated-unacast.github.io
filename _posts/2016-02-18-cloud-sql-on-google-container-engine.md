@@ -60,4 +60,4 @@ Of the thinkable solutions, this solution provides several desirable properties.
 
 Our journey tells a classic story from using systems not yet mature. Documentation tends to be incomplete and the preferred solutions to your problems are still only on the roadmap. On another note, our experience working with the Google Cloud Platform and GKE has mostly been exhilarating.
 
-For further reading on lessons we have learned running Kubernetes in production check out Andreas Heim's [post](http://labs.unacast.com/2016/01/27/three-lessons-from-running-k8s-in-production/).
+For further reading on lessons we have learned running Kubernetes in production check out Andreas Heim's [post](http://unacast.github.com/2016/01/27/three-lessons-from-running-k8s-in-production/).

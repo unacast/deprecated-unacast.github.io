@@ -151,5 +151,5 @@ If you enjoyed this post I recommend that you keep in touch because it is a
 lot more to come. Also, check out some of the posts about microservices
  written by my awesome colleges:
 
-* [Building microservices with Scala and akka-http](http://labs.unacast.com/2016/03/03/building-microservices-with-akka-http/)
-* [Three lessons from running Kubernetes in production](http://labs.unacast.com/2016/01/27/three-lessons-from-running-k8s-in-production/)
+* [Building microservices with Scala and akka-http](http://unacast.github.com/2016/03/03/building-microservices-with-akka-http/)
+* [Three lessons from running Kubernetes in production](http://unacast.github.com/2016/01/27/three-lessons-from-running-k8s-in-production/)

@@ -33,7 +33,7 @@ This is a bit more flexible and ensures that the environment is perceived as the
 
 
 ## 2. Deployment
-As we do [all our deployments through Slack](http://labs.unacast.com/2015/10/26/chatops-at-unacast/) we needed some way of automating deployment to K8S. This is still much a work in progress, but we have ended up with a pretty stable default script to do this. The goal is to be able to update the ReplicationController at each deploy so that we can mount volumes, open ports, update labels etc. 
+As we do [all our deployments through Slack](http://unacast.github.com/2015/10/26/chatops-at-unacast/) we needed some way of automating deployment to K8S. This is still much a work in progress, but we have ended up with a pretty stable default script to do this. The goal is to be able to update the ReplicationController at each deploy so that we can mount volumes, open ports, update labels etc. 
 
 Updating the image in the ReplicationController does not automatically update already running pods, so to actually deploy a new version we also need to do a [rolling update](http://kubernetes.io/v1.1/docs/user-guide/update-demo/README.html). We also want the script to conditionally update the ReplicationController or create it if it does not exist in the given environment.
 
